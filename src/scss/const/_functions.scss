@@ -1,0 +1,50 @@
+@use 'sass:string';
+
+// STR REPLACE FUNCTION
+// https://css-tricks.com/snippets/sass/str-replace-function/
+@function str-replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace + str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+// URL ENCODER FOR INLINE SVGS
+// https://codepen.io/kevinweber/pen/dXWoRw
+@function url-encode($string) {
+  $map: (
+    "%": "%25",
+    "<": "%3C",
+    ">": "%3E",
+    "!": "%21",
+    "*": "%2A",
+    "'": "%27",
+    '"': "%22",
+    "(": "%28",
+    ")": "%29",
+    "{": "%7B",
+    "}": "%7D",
+    "[": "%5B",
+    "]": "%5D",
+    ";": "%3B",
+    ":": "%3A",
+    "@": "%40",
+    "&": "%26",
+    "=": "%3D",
+    "\+": "%2B",
+    "$": "%24",
+    ",": "%2C",
+    "/": "%2F",
+    "?": "%3F",
+    "#": "%23"
+  );
+
+  @each $search, $replace in $map {
+    $string: str-replace($string, $search, $replace);
+  }
+
+  @return url('data:image/svg+xml;charset=utf-8,' + $string);
+}

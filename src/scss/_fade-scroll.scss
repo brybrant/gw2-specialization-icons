@@ -1,0 +1,78 @@
+@use './const' as *;
+
+.fade-scroll {
+  overflow: hidden;
+}
+
+.fade-scroll__scrollbar {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.fade-scroll__content {
+  position: relative;
+}
+
+/* Horizontal fade scroller */
+// .fade-scroll--horizontal {
+
+//   .fade-scroll__scrollbar {
+//     height: auto;
+//     overflow-x: scroll;
+//   }
+
+//   .fade-scroll__content {
+//     display: inline-block;
+//     width: auto;
+//     height: 100%;
+//     vertical-align: top;
+//     white-space: nowrap;
+//   }
+  
+//   &.left-overflow {
+//     mask: linear-gradient(#000, #000) 0 0 / 100% 100% exclude,
+//       linear-gradient(90deg, #000, transparent) 0 0 / 24px 100% repeat-y;
+//   }
+
+//   &.right-overflow {
+//     mask: linear-gradient(#000, #000) 0 0 / 100% 100% exclude,
+//       linear-gradient(90deg, transparent, #000) 100% 0 / 24px 100% repeat-y;
+//   }
+
+//   &.left-overflow.right-overflow {
+//     mask: linear-gradient(#000, #000) 0 0 / 100% 100% exclude,
+//       linear-gradient(90deg, #000, transparent) 0 0 / 24px 100% repeat-y,
+//       linear-gradient(90deg, transparent, #000) 100% 0 / 24px 100% repeat-y;
+//   }
+// }
+
+/* Vertical fade scroller */
+.fade-scroll--vertical {
+  height: 100%;
+
+  .fade-scroll__scrollbar {
+    overflow-y: scroll;
+  }
+
+  .fade-scroll__content {
+    width: 100%;
+    height: auto;
+  }
+
+  &.top-overflow {
+    mask: linear-gradient(#000, #000) 0 0 / 100% 100% exclude,
+      linear-gradient(#000, transparent) 0 0 / 100% 24px repeat-x;
+  }
+
+  &.bottom-overflow {
+    mask: linear-gradient(#000, #000) 0 0 / 100% 100% exclude,
+      linear-gradient(transparent, #000) 0 100% / 100% 24px repeat-x;
+  }
+
+  &.top-overflow.bottom-overflow {
+    mask: linear-gradient(#000, #000) 0 0 / 100% 100% exclude,
+      linear-gradient(#000, transparent) 0 0 / 100% 24px repeat-x,
+      linear-gradient(transparent, #000) 0 100% / 100% 24px repeat-x;
+  }
+}

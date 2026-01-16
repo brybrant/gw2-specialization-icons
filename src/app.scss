@@ -1,0 +1,138 @@
+@use './scss/const' as *;
+
+@use './scss/html' as *;
+@use './scss/form-controls' as *;
+@use './scss/fade-scroll' as *;
+
+$preview-size: 512px;
+$options-width: 250px;
+
+main {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: stretch;
+  min-width: $preview-size + $options-width + $gutter * 2;
+  height: 100vh;
+  height: 100dvh;
+  color: $grey-900;
+}
+
+.preview {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  min-width: $preview-size + $gutter * 2;
+  padding: $gutter;
+  background: url-encode("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 2' fill='rgba(0,0,0,0.125)'><path d='M0,0H1V2H2V1H0'/></svg>") 50% 50% / 20px 20px;
+}
+
+.options__container {
+  width: $options-width;
+  min-width: $options-width;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: $grey-300;
+  box-shadow: $right-drawer-shadow;
+}
+
+.options {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  padding: 0 10px $gutter;
+}
+
+svg {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.source-link {
+  display: block;
+  align-self: center;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  margin-top: $gutter;
+  border-radius: 50%;
+  color: $grey-600;
+
+  &:hover {
+    color: $grey-800;
+  }
+
+  svg {
+    fill: currentColor;
+  }
+}
+
+small {
+  color: $grey-600;
+  font-size: $small-font-size;
+  line-height: $line-height;
+}
+
+.icon {
+  position: relative;
+
+  svg {
+    position: relative;
+  }
+}
+
+.icon__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.icon__cropmark {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-style: solid;
+  border-color: #fff;
+  mix-blend-mode: exclusion;
+}
+
+.icon__cropmark--top-left {
+  right: 100%;
+  bottom: 100%;
+  border-width: 0 1px 1px 0;
+}
+
+.icon__cropmark--top-right {
+  bottom: 100%;
+  left: 100%;
+  border-width: 0 0 1px 1px;
+}
+
+.icon__cropmark--bottom-right {
+  top: 100%;
+  left: 100%;
+  border-width: 1px 0 0 1px;
+}
+
+.icon__cropmark--bottom-left {
+  top: 100%;
+  right: 100%;
+  border-width: 1px 1px 0 0;
+}
+
+// .sr-only {
+//   position: absolute !important;
+//   overflow: hidden !important;
+//   clip: rect(0, 0, 0, 0) !important;
+//   width: 1px !important;
+//   height: 1px !important;
+//   margin: -1px !important;
+//   padding: 0 !important;
+//   border: 0 !important;
+//   font-size: 0 !important;
+//   line-height: 0 !important;
+// }

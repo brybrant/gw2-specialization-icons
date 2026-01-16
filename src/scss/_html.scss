@@ -1,0 +1,30 @@
+@use './const' as *;
+
+*, :before, :after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: hidden;
+  background: $grey-200;
+  color: $grey-800;
+  font-size: 100%;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  font-family:
+    Arial,
+    Helvetica,
+    Roboto,
+    sans-serif;
+  text-align: center;
+}
