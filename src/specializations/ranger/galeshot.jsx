@@ -129,11 +129,15 @@ export const Galeshot = (props) => {
           />
         </Show>
         <use
-          fill='url(#Galeshot_shading1)'
+          fill={
+            options.shading ? 'url(#Galeshot_shading1)' : props.palette.Flat
+          }
           href='#Galeshot_segment1_composite'
         />
         <use
-          fill='url(#Galeshot_shading2)'
+          fill={
+            options.shading ? 'url(#Galeshot_shading2)' : props.palette.Flat
+          }
           href='#Galeshot_segment1_composite'
           transform='translate(0 512) scale(1 -1)'
         />
