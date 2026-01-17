@@ -265,7 +265,7 @@ const dispose = render(() => {
               <legend>Preview</legend>
               <Control.ColorPicker
                 label='Background Color'
-                default={'white'}
+                default={'#ffffff'}
                 value={options.backgroundColor}
                 callback={(color) => setOptions('backgroundColor', color)}
               />
