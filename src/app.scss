@@ -29,6 +29,7 @@ main {
 }
 
 .options__container {
+  position: relative;
   width: $options-width;
   min-width: $options-width;
   height: 100%;
