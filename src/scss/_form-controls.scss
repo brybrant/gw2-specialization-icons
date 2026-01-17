@@ -156,6 +156,24 @@ input[type=color] {
 
 $_checkbox-radio-size: $line-height - 2px;
 
+@mixin range-thumb {
+  appearance: none;
+  border: 2px solid $grey-500;
+  border-radius: 50%;
+  width: $_checkbox-radio-size;
+  height: $_checkbox-radio-size;
+  background: $grey-400;
+  cursor: pointer;
+}
+
+@mixin range-track {
+  appearance: none;
+  border-radius: ($_checkbox-radio-size - 4px) * 0.5;
+  width: 100%;
+  height: $_checkbox-radio-size - 4px;
+  background: $grey-200;
+}
+
 input[type=range] {
   appearance: none;
   margin: ($form-control-height - $_checkbox-radio-size) * 0.5 0;
@@ -164,25 +182,32 @@ input[type=range] {
   height: $_checkbox-radio-size;
   background: none;
 
-  &::-webkit-slider-thumb, &::-moz-range-thumb {
-    appearance: none;
-    border: 2px solid $grey-500;
-    border-radius: 50%;
-    width: $_checkbox-radio-size;
-    height: $_checkbox-radio-size;
-    background: $grey-400;
-    cursor: pointer;
+  &::-webkit-slider-thumb {
+    @include range-thumb;
+    width: $_checkbox-radio-size + 4px;
+    height: $_checkbox-radio-size + 4px;
+    margin-top: -4px;
   }
 
-  &::-webkit-slider-runnable-track, &::-moz-range-track {
-    appearance: none;
-    border-radius: ($_checkbox-radio-size - 4px) * 0.5;
-    height: $_checkbox-radio-size - 4px;
-    background: $grey-200;
+  &::-moz-range-thumb {
+    @include range-thumb;
+  }
+
+  &::-webkit-slider-runnable-track {
+    @include range-track;
+  }
+
+  &::-moz-range-track {
+    @include range-track;
   }
 
   &:hover {
-    &::-webkit-slider-thumb, &::-moz-range-thumb {
+    &::-webkit-slider-thumb {
+      border-color: $grey-600;
+      background: $grey-500;
+    }
+    
+    &::-moz-range-thumb {
       border-color: $grey-600;
       background: $grey-500;
     }
