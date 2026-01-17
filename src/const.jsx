@@ -12,7 +12,7 @@ export const iconSize = Object.freeze({
 
 /**
  * @typedef {Object} Options
- * @prop {Color} backgroundColor Preview background color (default = `white`)
+ * @prop {Color} backgroundColor Preview background color (default = `#ffffff`)
  * @prop {Number} backgroundOpacity Preview background opacity (default = `1`)
  * @prop {Boolean} checkerboard Preview checkerboard (default = `true`)
  * @prop {Boolean} cropmarks Preview cropmarks (default = `true`)

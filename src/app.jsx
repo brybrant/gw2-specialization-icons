@@ -138,7 +138,7 @@ const dispose = render(() => {
 
   /** @type {[Options, import('solid-js/store').SetStoreFunction<Options>]} */
   const [options, setOptions] = createStoredStore('options', {
-    backgroundColor: 'white',
+    backgroundColor: '#ffffff',
     backgroundOpacity: 1,
     checkerboard: true,
     cropmarks: true,
