@@ -61,7 +61,7 @@ export function Download(props) {
         }
       }}
     >
-      Download
+      Download ({options.rasterize ? 'PNG' : 'SVG'})
     </button>
   );
 }
