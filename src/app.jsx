@@ -14,6 +14,8 @@ import GitHubSVG from '@brybrant/svg-icons/GitHub.svg';
 
 import { Vertical } from '@brybrant/fade-scroll';
 
+import { Favicon } from './components/favicon';
+
 import { createStoredStore } from './components/stored-store';
 
 import * as Control from './components/form-controls';
@@ -216,6 +218,9 @@ const dispose = render(() => {
 
   return (
     <OptionsContext.Provider value={options}>
+      <div role='none' style={{ display: 'none' }}>
+        <Favicon />
+      </div>
       <main>
         <div
           class='preview'
