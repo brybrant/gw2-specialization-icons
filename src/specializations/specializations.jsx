@@ -1,5 +1,6 @@
 export { Amalgam } from './engineer/amalgam';
 export { Antiquary } from './thief/antiquary';
+export { Antiquary2026 } from './thief/antiquary2026';
 export { Berserker } from './warrior/berserker';
 export { Bladesworn } from './warrior/bladesworn';
 export { Catalyst } from './elementalist/catalyst';
@@ -19,6 +20,7 @@ export { Harbinger } from './necromancer/harbinger';
 export { Herald } from './revenant/herald';
 export { Holosmith } from './engineer/holosmith';
 export { Luminary } from './guardian/luminary';
+export { Luminary2026 } from './guardian/luminary2026';
 export { Mechanist } from './engineer/mechanist';
 export { Mesmer } from './mesmer/mesmer';
 export { Mirage } from './mesmer/mirage';

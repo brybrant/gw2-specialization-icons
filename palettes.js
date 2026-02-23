@@ -171,9 +171,9 @@ for (const [profession, color] of Object.entries(palettes)) {
   }
 
   exports.push(`/** @type {Palette} */
-  ${profession}: {
+  ${profession}: Object.freeze({
     ${shades.join('\n    ')}
-  },`);
+  }),`);
 }
 
 writeFileSync(

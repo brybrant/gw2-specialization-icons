@@ -17,7 +17,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Renegade = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -105,7 +105,7 @@ export const Renegade = (props) => {
           id='Renegade_segment1'
           d='M335.46,147.93c-25.9448,39.8569-41.6016,85.3517-45.7339,132.5102l-33.7261,16.5596-33.7256-16.5593c-3.9911-45.5667-18.9163-91.3118-45.7344-132.5104,23.4401-24.7853,51.6451-55.0338,79.46-85.38,28.0406,30.5925,56.2646,60.8533,79.46,85.38Z'
         />
-        <Rectangle id='Renegade_segment1_shading_mask' height='147.93' />
+        <Rectangle id='Renegade_segment1_shading_mask' height={147.93} />
         <path
           id='Renegade_segment2'
           d='M411.5949 262.0253 256 345.5696 100.4051 262.0253 207.038 233.4683 160.3291 262.0253 256 308.9998 351.6709 262.0253 304.962 233.4684 411.5949 262.0253Z'
@@ -142,10 +142,10 @@ export const Renegade = (props) => {
           }
         />
         <Show when={options.shading}>
-          <Rectangle width='256' fill='url(#Renegade_segment1_shading2)' />
+          <Rectangle fill='url(#Renegade_segment1_shading2)' width={256} />
           <g clip-path='url(#Renegade_segment1_shading_clip)'>
             <Rectangle fill='url(#Renegade_segment1_shading3)' />
-            <Rectangle width='256' fill='url(#Renegade_segment1_shading4)' />
+            <Rectangle fill='url(#Renegade_segment1_shading4)' width={256} />
           </g>
         </Show>
         <Show when={options.stroke}>
@@ -204,5 +204,28 @@ export const Renegade = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <Rectangle
+            id='Renegade_tiny_mask'
+            d='M29,17.5l-14,7L1,17.5v-6l14,7,14-7v6Z'
+            width={32}
+            height={32}
+          />
+          <clipPath id='Renegade_tiny_clip'>
+            <use href='#Renegade_tiny_mask' />
+          </clipPath>
+        </defs>
+        <path
+          clip-path='url(#Renegade_tiny_clip)'
+          d='M18,18c0-6,3.5-11,3.5-11L15,0l-6.5,7s3.5,5,3.5,11v4c1,5,2,8,2,8l1,2,1-2s1-3,2-8v-4Z'
+        />
+        <path d='M15 23 1 16 9 14 10 14 7 16 15 20 23 16 20 14 21 14 29 16Z' />
+      </Icon>
+    </Show>
   );
 };

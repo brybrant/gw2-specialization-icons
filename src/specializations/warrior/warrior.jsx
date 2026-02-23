@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Warrior = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -25,7 +25,7 @@ export const Warrior = (props) => {
     >
       <defs>
         <RadialGradient
-          id='Warrior_shading1'
+          id='Warrior_right_shading'
           viewBox={[0, 0, 512, 512]}
           cy={124.25}
           fy={239.72}
@@ -38,7 +38,7 @@ export const Warrior = (props) => {
           ]}
         />
         <RadialGradient
-          id='Warrior_shading2'
+          id='Warrior_left_shading'
           viewBox={[0, 0, 256, 512]}
           cx={256}
           cy={124.25}
@@ -68,10 +68,12 @@ export const Warrior = (props) => {
       </Show>
       <g clip-path='url(#Warrior_clip)'>
         <Rectangle
-          fill={options.shading ? 'url(#Warrior_shading1)' : props.palette.Flat}
+          fill={
+            options.shading ? 'url(#Warrior_right_shading)' : props.palette.Flat
+          }
         />
         <Show when={options.shading}>
-          <Rectangle width='256' fill='url(#Warrior_shading2)' />
+          <Rectangle fill='url(#Warrior_left_shading)' width={256} />
         </Show>
         <Show when={options.stroke}>
           <use
@@ -87,5 +89,13 @@ export const Warrior = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <path d='M27,9c0,1-1,3-3,3v-2c-4-2-6-4-6-4,0-1-2-2-2-2,0,0-2,1-2,2,0,0-2,2-6,4v2c-2,0-3-2-3-3C2,8,0,5,0,5c0,4,4,7,4,7-1,0-3-1-3-1,2,4,5,5,5,5-1,0-3-1-3-1,2,3,5,2,5,2v6s2,3,6,5v-10c0-1-1-1-1-1l-4-1v-1l7-2,7,2v1l-4,1s-1,0-1,1v10c4-2,6-5,6-5v-6s3,1,5-2c0,0-2,1-3,1,0,0,3-1,5-5,0,0-2,1-3,1,0,0,4-3,4-7,0,0-2,3-5,4Z' />
+      </Icon>
+    </Show>
   );
 };

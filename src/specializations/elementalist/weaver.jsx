@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Weaver = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -25,7 +25,7 @@ export const Weaver = (props) => {
     >
       <defs>
         <RadialGradient
-          id='Weaver_shading1'
+          id='Weaver_shading_top'
           viewBox={[0, 0, 512, 512]}
           cx={226.617}
           cy={185.8872}
@@ -41,7 +41,7 @@ export const Weaver = (props) => {
           ]}
         />
         <RadialGradient
-          id='Weaver_shading2'
+          id='Weaver_shading_bottom'
           viewBox={[0, 0, 512, 512]}
           cx={226.617}
           cy={185.8872}
@@ -56,27 +56,24 @@ export const Weaver = (props) => {
           ]}
         />
         <path
-          id='Weaver_segment1'
+          id='Weaver_segment'
           d='M289.1143,161.1525c-8.8655,14.1859-38.3068,56.3307-66.4,92.27l32.28,32.27c-11.74,5.42-23.42,10.95-35.04,16.58l-69.63-69.63c32.7426-36.963,65.8848-77.9614,97.35-121.2,13.5271-18.1651,20.9752-38.8559,22.32-60.13,10.0217,14.1605,18.3986,29.6363,24.8,45.76,8.7183,21.6165,5.9841,45.4614-5.68,64.08ZM142.6643,241.2525c-6.09,6.79-12.23,13.52-18.43,20.19l59.01,59.01c8.56-4.34,17.15-8.63,25.77-12.85l-66.35-66.35Z'
         />
-        <clipPath id='Weaver_segment1_clip'>
-          <use href='#Weaver_segment1' />
+        <clipPath id='Weaver_segment_clip'>
+          <use href='#Weaver_segment' />
         </clipPath>
-        <g
-          clip-path='url(#Weaver_segment1_clip)'
-          id='Weaver_segment1_composite'
-        >
+        <g id='Weaver_segment_composite' clip-path='url(#Weaver_segment_clip)'>
           <Rectangle />
           <Show when={options.stroke}>
             <g fill='none'>
               <use
                 {...strokeWidth.x1}
-                href='#Weaver_segment1'
+                href='#Weaver_segment'
                 stroke={props.palette.Highlight}
               />
               <use
                 {...strokeWidth.x05}
-                href='#Weaver_segment1'
+                href='#Weaver_segment'
                 stroke={props.palette.Dark}
               />
             </g>
@@ -90,14 +87,41 @@ export const Weaver = (props) => {
         />
       </Show>
       <use
-        fill={options.shading ? 'url(#Weaver_shading1)' : props.palette.Flat}
-        href='#Weaver_segment1_composite'
+        fill={options.shading ? 'url(#Weaver_shading_top)' : props.palette.Flat}
+        href='#Weaver_segment_composite'
       />
       <use
-        fill={options.shading ? 'url(#Weaver_shading2)' : props.palette.Flat}
-        href='#Weaver_segment1_composite'
+        fill={
+          options.shading ? 'url(#Weaver_shading_bottom)' : props.palette.Flat
+        }
+        href='#Weaver_segment_composite'
         transform='rotate(180 256 256)'
       />
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <Rectangle
+            id='Weaver_tiny_mask'
+            d='M13,21L5,13l1-1,8,8-1,1Z'
+            width={32}
+            height={32}
+          />
+          <clipPath id='Weaver_tiny_clip'>
+            <use href='#Weaver_tiny_mask' />
+          </clipPath>
+          <path
+            id='Weaver_tiny'
+            clip-path='url(#Weaver_tiny_clip)'
+            d='M5,16C14,6,16,3,16,2V0c5,4,5,7-3,16l2,2-5,3-5-5Z'
+          />
+        </defs>
+        <use href='#Weaver_tiny' />
+        <use href='#Weaver_tiny' transform='rotate(180 16 16)' />
+      </Icon>
+    </Show>
   );
 };

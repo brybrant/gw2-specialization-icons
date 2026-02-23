@@ -17,7 +17,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Paragon = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -147,8 +147,8 @@ export const Paragon = (props) => {
           <use href='#Paragon_segment3_mask' />
         </clipPath>
         <g
-          clip-path='url(#Paragon_segment3_mask_clip)'
           id='Paragon_segment3_composite'
+          clip-path='url(#Paragon_segment3_mask_clip)'
         >
           <Rectangle
             fill={
@@ -158,16 +158,10 @@ export const Paragon = (props) => {
             }
           />
           <Show when={options.stroke}>
-            <use
-              {...strokeWidth.x05}
-              href='#Paragon_segment3_mask'
-              stroke={props.palette.Highlight}
-            />
-            <use
-              {...strokeWidth.x1}
-              href='#Paragon_segment3_stroke'
-              stroke={props.palette.Highlight}
-            />
+            <g stroke={props.palette.Highlight}>
+              <use {...strokeWidth.x05} href='#Paragon_segment3_mask' />
+              <use {...strokeWidth.x1} href='#Paragon_segment3_stroke' />
+            </g>
             <use href='#Paragon_stroke' />
             <use
               {...strokeWidth.x05}
@@ -196,7 +190,7 @@ export const Paragon = (props) => {
             }
           />
           <Show when={options.shading}>
-            <Rectangle width='256' fill='url(#Paragon_segment1_shading2)' />
+            <Rectangle fill='url(#Paragon_segment1_shading2)' width={256} />
           </Show>
           <Show when={options.stroke}>
             <use
@@ -216,7 +210,7 @@ export const Paragon = (props) => {
             }
           />
           <Show when={options.shading}>
-            <Rectangle width='256' fill='url(#Paragon_segment2_shading2)' />
+            <Rectangle fill='url(#Paragon_segment2_shading2)' width={256} />
           </Show>
           <Show when={options.stroke}>
             <use
@@ -234,5 +228,25 @@ export const Paragon = (props) => {
         />
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <path
+            id='Paragon_tiny_mask'
+            d='M12 15 12 32 0 32 0 0 32 0 32 32 20 32 20 15 19 16 19 32 13 32 13 16Z'
+          />
+          <clipPath id='Paragon_tiny_clip'>
+            <use href='#Paragon_tiny_mask' />
+          </clipPath>
+        </defs>
+        <path
+          clip-path='url(#Paragon_tiny_clip)'
+          d='M25,13s0-3-1-4c0,0,6-5,5-9,3,4,2,7-2,10,0,0,4-1,4.5-4,0,0,.5,1,.5,2,0,5-4,4-5,5.5,1-.5,4-.5,4.5-1.5-.5,3-1.5,4-4.5,4.5,0,0,1,.5,3,0,0,1.5-3,3.5-4,2.5-1-5-7,1-2,1.5,0,0,0,3.5,1,4.5-7,2-9,7-9,7,0,0-2-5-9-7,1-1,1-4.5,1-4.5,5-.5-1-6.5-2-1.5-1,1-4-1-4-2.5,2,.5,3,0,3,0-3-.5-4-1.5-4.5-4.5.5,1,3.5,1,4.5,1.5-1-1.5-5-.5-5-5.5,0-1,.5-2,.5-2,.5,2,2.5,4,4.5,4C1,7,0,4,3,0c-1,4,5,9,5,9-1,1-1,4-1,4l9,5,9-5ZM22,13.5s-1-1.5,0-3c-4-1.5-6-3.5-6-3.5,0,0-2,2-6,3.5,1,1.5,0,3,0,3l6,3,6-3Z'
+        />
+      </Icon>
+    </Show>
   );
 };

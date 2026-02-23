@@ -8,7 +8,7 @@ import { RadialGradient } from '../../components/radial-gradient';
 
 import { LinearGradient } from '../../components/linear-gradient';
 
-import { outlineStyle, strokeWidth, useOptions } from '../../const';
+import { ellipse, outlineStyle, strokeWidth, useOptions } from '../../const';
 
 /**
  * @param {Object} props
@@ -17,7 +17,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Deadeye = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -78,7 +78,7 @@ export const Deadeye = (props) => {
             { color: props.palette.Highlight },
           ]}
         />
-        <circle cx='256' cy='256' id='Deadeye_segment1_stroke1' r='107.6202' />
+        <circle id='Deadeye_segment1_stroke1' cx={256} cy={256} r={107.6202} />
         <Rectangle
           id='Deadeye_segment1_stroke2'
           d='M256,165.1282c10.0806,11.2702,22.6484,20.2657,36.8425,26.1264-17.1392,12.4757-30.2071,30.2014-36.8425,50.8165-6.6354-20.6152-19.7033-38.3409-36.8425-50.8165,14.1942-5.8607,26.7619-14.8562,36.8425-26.1264ZM191.2546,292.8425c-5.8607-14.1942-14.8562-26.7619-26.1264-36.8425,11.2702-10.0806,20.2657-22.6484,26.1264-36.8425,12.4757,17.1392,30.2014,30.2071,50.8165,36.8425-20.6152,6.6354-38.3409,19.7033-50.8165,36.8425ZM256,346.8718c-10.0806-11.2702-22.6484-20.2657-36.8425-26.1264,17.1392-12.4757,30.2071-30.2014,36.8425-50.8165,6.6354,20.6152,19.7033,38.3409,36.8425,50.8165-14.1942,5.8607-26.7619,14.8562-36.8425,26.1264ZM320.7454,292.8425c-12.4757-17.1392-30.2014-30.2071-50.8165-36.8425,20.6152-6.6354,38.3409-19.7033,50.8165-36.8425,5.8607,14.1942,14.8562,26.7619,26.1264,36.8425-11.2702,10.0806-20.2657,22.6484-26.1264,36.8425Z'
@@ -120,7 +120,7 @@ export const Deadeye = (props) => {
             }
           />
           <Show when={options.shading}>
-            <Rectangle height='256' fill='url(#Deadeye_segment3_shading2)' />
+            <Rectangle fill='url(#Deadeye_segment3_shading2)' height={256} />
           </Show>
           <Show when={options.stroke}>
             <use
@@ -204,5 +204,37 @@ export const Deadeye = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <Rectangle
+            id='Deadeye_tiny_mask1'
+            d='M16,8l2,1,1,2-3,3-3-3,1-2,2-1ZM8,16l1-2,2-1,3,3-3,3-2-1-1-2ZM16,24l-2-1-1-2,3-3,3,3-1,2-2,1ZM23,18l-2,1-3-3,3-3,2,1,1,2-1,2Z'
+            width={32}
+            height={32}
+          />
+          <Rectangle
+            id='Deadeye_tiny_mask2'
+            d={ellipse(16, 16, 11)}
+            width={32}
+            height={32}
+          />
+          <clipPath id='Deadeye_tiny_clip1'>
+            <use href='#Deadeye_tiny_mask1' />
+          </clipPath>
+          <clipPath id='Deadeye_tiny_clip2'>
+            <use href='#Deadeye_tiny_mask2' />
+          </clipPath>
+        </defs>
+        <path
+          clip-path='url(#Deadeye_tiny_clip2)'
+          d='M16,30.5l1-.5c3-3,4-4,4-5,6,0,8-7,11-9-3-2-5-9-11-9,0-1-1-2-4-5l-1-.5-1,.5c-3,3-4,4-4,5C5,7,3,14,0,16c3,2,5,9,11,9,0,1,1,2,4,5l1,.5Z'
+        />
+        <circle clip-path='url(#Deadeye_tiny_clip1)' cx={16} cy={16} r={9} />
+      </Icon>
+    </Show>
   );
 };

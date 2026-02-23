@@ -17,7 +17,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Willbender = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -27,7 +27,7 @@ export const Willbender = (props) => {
     >
       <defs>
         <LinearGradient
-          id='Willbender_segment1_shading1'
+          id='Willbender_sword_shading1'
           viewBox={[0, 0, 512, 512]}
           x1={147.7587}
           y1={179.8006}
@@ -39,7 +39,7 @@ export const Willbender = (props) => {
           ]}
         />
         <RadialGradient
-          id='Willbender_segment1_shading2'
+          id='Willbender_sword_shading2'
           viewBox={[0, 0, 512, 512]}
           cx={256}
           cy={315.4418}
@@ -51,7 +51,7 @@ export const Willbender = (props) => {
           ]}
         />
         <LinearGradient
-          id='Willbender_segment1_shading3'
+          id='Willbender_sword_shading3'
           viewBox={[0, 196.4769, 449.9619, 315.5231]}
           x1={129.5419}
           y1={207.3059}
@@ -66,7 +66,7 @@ export const Willbender = (props) => {
           ]}
         />
         <LinearGradient
-          id='Willbender_segment1_shading4'
+          id='Willbender_sword_shading4'
           viewBox={[0, 196.4769, 512, 315.5231]}
           x1={129.5419}
           y1={207.3059}
@@ -79,7 +79,7 @@ export const Willbender = (props) => {
           ]}
         />
         <LinearGradient
-          id='Willbender_segment2_shading1'
+          id='Willbender_gem1_shading1'
           viewBox={[0, 0, 512, 512]}
           x1={256}
           y1={179.4019}
@@ -92,7 +92,7 @@ export const Willbender = (props) => {
           ]}
         />
         <LinearGradient
-          id='Willbender_segment2_shading2'
+          id='Willbender_gem1_shading2'
           viewBox={[0, 0, 256, 512]}
           x1={256}
           y1={179.4019}
@@ -105,7 +105,7 @@ export const Willbender = (props) => {
           ]}
         />
         <LinearGradient
-          id='Willbender_segment2_shading3'
+          id='Willbender_gem1_shading3'
           viewBox={[0, 0, 512, 512]}
           x1={256}
           y1={90.9615}
@@ -117,7 +117,7 @@ export const Willbender = (props) => {
           ]}
         />
         <LinearGradient
-          id='Willbender_segment2_shading4'
+          id='Willbender_gem1_shading4'
           viewBox={[0, 0, 256, 512]}
           x1={256}
           y1={90.9615}
@@ -130,7 +130,7 @@ export const Willbender = (props) => {
           ]}
         />
         <LinearGradient
-          id='Willbender_segment3_shading1'
+          id='Willbender_gem2_shading1'
           viewBox={[0, 0, 512, 512]}
           x1={141.4652}
           y1={292.3386}
@@ -143,7 +143,7 @@ export const Willbender = (props) => {
           ]}
         />
         <LinearGradient
-          id='Willbender_segment3_shading2'
+          id='Willbender_gem2_shading2'
           viewBox={[0, 0, 102.1112, 512]}
           x1={102.1112}
           y1={292.3386}
@@ -155,7 +155,7 @@ export const Willbender = (props) => {
           ]}
         />
         <LinearGradient
-          id='Willbender_segment3_shading3'
+          id='Willbender_gem2_shading3'
           viewBox={[0, 0, 512, 512]}
           x1={121.7882}
           y1={270.693}
@@ -167,7 +167,7 @@ export const Willbender = (props) => {
           ]}
         />
         <LinearGradient
-          id='Willbender_segment3_shading4'
+          id='Willbender_gem2_shading4'
           viewBox={[0, 0, 102.1112, 512]}
           x1={102.1112}
           y1={249.0474}
@@ -180,48 +180,48 @@ export const Willbender = (props) => {
           ]}
         />
         <path
-          id='Willbender_segment1'
+          id='Willbender_sword'
           d='M100.3886,193.1664c-2.0805,1.4936-2.1212,1.6643-.8704,3.8991,1.7948,3.2067,3.9436,6.1878,6.3978,8.8887,1.7222,1.8953,1.8862,1.9099,3.9669.4169l26.319-18.8852c.2412.3416.4828.683.7246,1.024,5.8544,8.2549,5.6792,9.3104-2.5075,15.2597-1.6238,1.18-3.2492,2.3588-4.8771,3.5363,28.5435,41.0834,62.132,81.5399,100.19,119.33,43.4283,43.1479,91.352,81.5716,142.9096,114.5804,2.0057,1.2841,2.0341,1.3623,1.1887,3.5888-.2902.7644-.593,1.5251-.9083,2.2808,13.8365.8572,28.3839-.8524,42.52-5.65,12.9143-4.3814,24.5703-11.01,34.52-19.14-28.7626-9.3748-50.7279-21.9038-73.28-38.55-35.9107-26.9331-69.5696-56.4422-100.37-87.98-37.8512-38.7059-71.3225-80.2599-99.84-122.95-1.5343,1.1447-3.0698,2.2883-4.6064,3.4311-8.2618,6.1444-9.4466,5.9642-15.4802-2.3789-.1379-.1907-.2757-.3814-.4134-.5722l26.0412-18.696c2.0754-1.49,2.1156-1.6573.875-3.8907-1.7869-3.2167-3.9369-6.2051-6.3983-8.9014-1.7236-1.8881-1.8852-1.9023-3.9623-.4117l-21.6556,15.5399c.59.87.94,1.93.94,3.07,0,3.0009-2.4456,5.43-5.43,5.43-3.022,0-5.44-2.4544-5.44-5.43,0-1.91.98-3.59,2.48-4.56-19.0635-27.7609-35.8961-55.6214-50.5779-82.7871-2.3694-4.3841-2.6256-4.4876-7.312-2.793-3.5137,1.2706-6.9811,2.6363-10.4011,4.0948-5.3885,2.298-5.6614,3.0683-2.9764,8.2748,11.7046,22.6965,28.7074,53.2174,51.4473,87.0005.98-.69,2.16-1.09,3.44-1.09,3.317,0,6.01,2.703,6.01,6.02,0,3.3742-2.744,6.01-6.01,6.01-2.05,0-3.86-1.02-4.95-2.59l-21.7033,15.5805Z'
         />
         <path
-          id='Willbender_segment2'
+          id='Willbender_gem1'
           d='M256 90.9615 218.9482 135.1817 256 179.4019 293.0518 135.1817Z'
         />
-        <Rectangle id='Willbender_segment2_shading_mask' height='135.1817' />
+        <Rectangle id='Willbender_gem1_shading_mask' height={135.1817} />
         <path
-          id='Willbender_segment3'
+          id='Willbender_gem2'
           d='M102.1112 249.0475 62.7572 292.3386 102.1112 335.6297 141.4652 292.3386Z'
         />
-        <Rectangle id='Willbender_segment3_shading_mask' height='292.3386' />
-        <clipPath id='Willbender_segment1_clip'>
-          <use href='#Willbender_segment1' />
+        <Rectangle id='Willbender_gem2_shading_mask' height={292.3386} />
+        <clipPath id='Willbender_sword_clip'>
+          <use href='#Willbender_sword' />
         </clipPath>
-        <clipPath id='Willbender_segment2_clip'>
-          <use href='#Willbender_segment2' />
+        <clipPath id='Willbender_gem1_clip'>
+          <use href='#Willbender_gem1' />
         </clipPath>
-        <clipPath id='Willbender_segment2_shading_clip'>
-          <use href='#Willbender_segment2_shading_mask' />
+        <clipPath id='Willbender_gem1_shading_clip'>
+          <use href='#Willbender_gem1_shading_mask' />
         </clipPath>
-        <clipPath id='Willbender_segment3_clip'>
-          <use href='#Willbender_segment3' />
+        <clipPath id='Willbender_gem2_clip'>
+          <use href='#Willbender_gem2' />
         </clipPath>
-        <clipPath id='Willbender_segment3_shading_clip'>
-          <use href='#Willbender_segment3_shading_mask' />
+        <clipPath id='Willbender_gem2_shading_clip'>
+          <use href='#Willbender_gem2_shading_mask' />
         </clipPath>
         <g
-          clip-path='url(#Willbender_segment1_clip)'
-          id='Willbender_segment1_composite'
+          id='Willbender_sword_composite'
+          clip-path='url(#Willbender_sword_clip)'
         >
           <Rectangle
             fill={
               options.shading
-                ? 'url(#Willbender_segment1_shading1)'
+                ? 'url(#Willbender_sword_shading1)'
                 : props.palette.Flat
             }
           />
           <Show when={options.shading}>
             <path
-              fill='url(#Willbender_segment1_shading2)'
+              fill='url(#Willbender_sword_shading2)'
               d='M512 512 296.6734 0 0 426.5327Z'
             />
             <path d='M400,512l49.9619-89.7041c-28.5297,8.4089-51.1589,6.6895-102.6562-30.743-79.6708-57.9114-133.6127-112.4938-187.2911-195.0759L0,253.3409l400,258.6591Z' />
@@ -230,50 +230,47 @@ export const Willbender = (props) => {
             <g fill='none'>
               <use
                 {...strokeWidth.x1}
-                href='#Willbender_segment1'
+                href='#Willbender_sword'
                 stroke={props.palette.Highlight}
               />
               <use
                 {...strokeWidth.x05}
-                href='#Willbender_segment1'
+                href='#Willbender_sword'
                 stroke={props.palette.Dark}
               />
             </g>
           </Show>
         </g>
         <g
-          clip-path='url(#Willbender_segment3_clip)'
-          id='Willbender_segment3_composite'
+          id='Willbender_gem2_composite'
+          clip-path='url(#Willbender_gem2_clip)'
         >
           <Rectangle
             fill={
               options.shading
-                ? 'url(#Willbender_segment3_shading1)'
+                ? 'url(#Willbender_gem2_shading1)'
                 : props.palette.Flat
             }
           />
           <Show when={options.shading}>
-            <Rectangle
-              width='102.1112'
-              fill='url(#Willbender_segment3_shading2)'
-            />
-            <g clip-path='url(#Willbender_segment3_shading_clip)'>
-              <Rectangle fill='url(#Willbender_segment3_shading3)' />
+            <Rectangle fill='url(#Willbender_gem2_shading2)' width={102.1112} />
+            <g clip-path='url(#Willbender_gem2_shading_clip)'>
+              <Rectangle fill='url(#Willbender_gem2_shading3)' />
               <Rectangle
-                width='102.1112'
-                fill='url(#Willbender_segment3_shading4)'
+                fill='url(#Willbender_gem2_shading4)'
+                width={102.1112}
               />
             </g>
           </Show>
           <Show when={options.stroke}>
             <use
               {...strokeWidth.x1}
-              href='#Willbender_segment3'
+              href='#Willbender_gem2'
               stroke={props.palette.Highlight}
             />
             <use
               {...strokeWidth.x05}
-              href='#Willbender_segment3'
+              href='#Willbender_gem2'
               stroke={props.palette.Dark}
             />
           </Show>
@@ -286,45 +283,63 @@ export const Willbender = (props) => {
         />
       </Show>
       <use
-        fill='url(#Willbender_segment1_shading3)'
-        href='#Willbender_segment1_composite'
+        fill='url(#Willbender_sword_shading3)'
+        href='#Willbender_sword_composite'
       />
-      <use href='#Willbender_segment3_composite' />
+      <use href='#Willbender_gem2_composite' />
       <g transform='translate(512) scale(-1 1)'>
         <use
-          fill='url(#Willbender_segment1_shading4)'
-          href='#Willbender_segment1_composite'
+          fill='url(#Willbender_sword_shading4)'
+          href='#Willbender_sword_composite'
         />
-        <use href='#Willbender_segment3_composite' />
+        <use href='#Willbender_gem2_composite' />
       </g>
-      <g clip-path='url(#Willbender_segment2_clip)'>
+      <g clip-path='url(#Willbender_gem1_clip)'>
         <Rectangle
           fill={
             options.shading
-              ? 'url(#Willbender_segment2_shading1)'
+              ? 'url(#Willbender_gem1_shading1)'
               : props.palette.Flat
           }
         />
         <Show when={options.shading}>
-          <Rectangle width='256' fill='url(#Willbender_segment2_shading2)' />
-          <g clip-path='url(#Willbender_segment2_shading_clip)'>
-            <Rectangle fill='url(#Willbender_segment2_shading3)' />
-            <Rectangle width='256' fill='url(#Willbender_segment2_shading4)' />
+          <Rectangle fill='url(#Willbender_gem1_shading2)' width={256} />
+          <g clip-path='url(#Willbender_gem1_shading_clip)'>
+            <Rectangle fill='url(#Willbender_gem1_shading3)' />
+            <Rectangle fill='url(#Willbender_gem1_shading4)' width={256} />
           </g>
         </Show>
         <Show when={options.stroke}>
           <use
             {...strokeWidth.x1}
-            href='#Willbender_segment2'
+            href='#Willbender_gem1'
             stroke={props.palette.Highlight}
           />
           <use
             {...strokeWidth.x05}
-            href='#Willbender_segment2'
+            href='#Willbender_gem1'
             stroke={props.palette.Dark}
           />
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <path
+            id='Willbender_tiny'
+            d='M32,30c-7-2-19-15-23-21l1-3-3,2L2,0,0,1l5,8-3,2h3c13,18,21,21,21,21,0,0,3,0,6-2Z'
+          />
+        </defs>
+        <path d='M7 19 3.5 15 0 19 3.5 23Z' />
+        <path d='M16 10 12.5 6 16 2 19.5 6Z' />
+        <path d='M25 19 28.5 15 32 19 28.5 23Z' />
+        <use href='#Willbender_tiny' />
+        <use href='#Willbender_tiny' transform='translate(32) scale(-1 1)' />
+      </Icon>
+    </Show>
   );
 };

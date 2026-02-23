@@ -20,7 +20,7 @@ const galeshotRectangle = {
 export const Galeshot = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -60,62 +60,58 @@ export const Galeshot = (props) => {
           ]}
         />
         <path
-          id='Galeshot_segment1_stroke1'
+          id='Galeshot_wing_stroke1'
           d='M325,146l-77.7975-109.9367c-75.2346-3.5938-100.2719,32.7961-73.851,82.0024-30.7577,16.3347-39.733,38.0005-3.3125,68.1889-33.935,27.0048-7.2894,57.199,102.9354,69.7454'
         />
         <path
-          id='Galeshot_segment1_stroke2'
+          id='Galeshot_wing_stroke2'
           d='M123.1046,172.1292l139.118,56.2079c-.0546,2.4713-.0988,5.0304-.1339,7.6819h-134.0888M119.1458,158.6658l143.4447,57.956c.3802-8.9637.9699-16.5877,1.8571-23.1906l-125.4913-96.2926M86.016,42.651l180.6788,138.6393c3.1736-12.7772,8.3755-20.987,16.7964-28.9383C231.3574,97.1802,173.0054,24.25,205.9399-17.5806'
         />
         <path
-          id='Galeshot_segment2_stroke1'
+          id='Galeshot_bow_stroke1'
           d='M64,256l-33.3987-33.3987h106.614s17.4177,17.4177,17.4177,17.4177h111.4144c0-156-101.1876-201.442-48.4587-254.1709,16.7468-16.7468,41.2405-22.405,62.2025-14.4304-19.519,14.5823-17.2727,45.8107-6.4177,74.8481,27.2279,72.8354,90.864,104.0032,68.5253,126.3418-9.9778,9.9778-18.0112-.3148-30.7405,11.0886-9.7027,8.692-10.8877,18.2209-11.0316,56.3228h24c0-10-.3798-22.1266-1.614-30.3291,29.2405,2.943,92.9621,22.9937,116.8289,46.3101-23.8668,23.3165-87.5883,43.3671-116.8289,46.3101,1.2342-8.2025,1.614-20.3291,1.614-30.3291h-24c.1439,38.1019,1.3288,47.6308,11.0316,56.3228,12.7293,11.4034,20.7627,1.1108,30.7405,11.0886,22.3386,22.3386-41.2975,53.5064-68.5253,126.3418-10.855,29.0374-13.1013,60.2658,6.4177,74.8481-20.962,7.9747-45.4557,2.3165-62.2025-14.4304-52.729-52.729,48.4587-98.1709,48.4587-254.1709h-111.4144s-17.4177,17.4177-17.4177,17.4177H30.6013s33.3987-33.3987,33.3987-33.3987Z'
         />
         <Rectangle
           {...galeshotRectangle}
-          id='Galeshot_segment2_stroke2'
+          id='Galeshot_bow_stroke2'
           d='M217.5886,526.1519h-57.5886v-254.1709h113.0473c.6298,61.9811,5.643,70.68,26.4717,86.8046-73.1013,75.9042-111.9921,137.3046-81.9304,167.3663ZM273.0473,240.019h-113.0473V-14.1519h57.5886c-30.0617,30.0617,8.8291,91.462,81.9304,167.3663-20.8287,16.1246-25.8419,24.8235-26.4717,86.8046Z'
         />
         <Rectangle
           {...galeshotRectangle}
-          id='Galeshot_segment2_mask'
+          id='Galeshot_bow_mask'
           d='M273.0473,271.981l-59.0473,26.019-59.3671-26.019,7-7h111.4144v7ZM273.0473,247.019h-111.4144l-7-7,59.3671-26.019,59.0473,26.019v7ZM324.1266,271.981l-13.1266,26.019-10.8734-26.019v-7h24v7ZM324.1266,247.019h-23.9999v-7s10.8734-26.019,10.8734-26.019l13.1266,26.019v7Z'
         />
-        <clipPath id='Galeshot_segment1_clip1'>
-          <use href='#Galeshot_segment1_stroke1' />
+        <clipPath id='Galeshot_wing_clip1'>
+          <use href='#Galeshot_wing_stroke1' />
         </clipPath>
-        <clipPath id='Galeshot_segment1_clip2'>
-          <use href='#Galeshot_segment1_stroke2' />
+        <clipPath id='Galeshot_wing_clip2'>
+          <use href='#Galeshot_wing_stroke2' />
         </clipPath>
-        <clipPath id='Galeshot_segment2_clip1'>
-          <use href='#Galeshot_segment2_stroke1' />
+        <clipPath id='Galeshot_bow_clip1'>
+          <use href='#Galeshot_bow_stroke1' />
         </clipPath>
-        <clipPath id='Galeshot_segment2_clip2'>
-          <use href='#Galeshot_segment2_stroke2' />
+        <clipPath id='Galeshot_bow_clip2'>
+          <use href='#Galeshot_bow_stroke2' />
         </clipPath>
-        <clipPath id='Galeshot_segment2_mask_clip'>
-          <use href='#Galeshot_segment2_mask' />
+        <clipPath id='Galeshot_bow_mask_clip'>
+          <use href='#Galeshot_bow_mask' />
         </clipPath>
-        <g
-          clip-path='url(#Galeshot_segment1_clip1)'
-          id='Galeshot_segment1_composite'
-        >
+        <g id='Galeshot_wing_composite' clip-path='url(#Galeshot_wing_clip1)'>
           <Show when={options.stroke}>
             <Rectangle fill={props.palette.Dark} />
           </Show>
-          <g clip-path='url(#Galeshot_segment1_clip2)'>
+          <g clip-path='url(#Galeshot_wing_clip2)'>
             <Rectangle {...galeshotRectangle} />
             <Show when={options.stroke}>
               <g fill='none'>
-                <g stroke={props.palette.Highlight}>
-                  <use {...strokeWidth.x05} href='#Galeshot_segment1_stroke2' />
-                  <use {...strokeWidth.x1} href='#Galeshot_segment1_stroke1' />
+                <g {...strokeWidth.x05} stroke={props.palette.Highlight}>
+                  <use href='#Galeshot_wing_stroke2' />
+                  <use {...strokeWidth.x1} href='#Galeshot_wing_stroke1' />
+                  <use
+                    href='#Galeshot_wing_stroke1'
+                    stroke={props.palette.Dark}
+                  />
                 </g>
-                <use
-                  {...strokeWidth.x05}
-                  href='#Galeshot_segment1_stroke1'
-                  stroke={props.palette.Dark}
-                />
               </g>
             </Show>
           </g>
@@ -132,28 +128,23 @@ export const Galeshot = (props) => {
           fill={
             options.shading ? 'url(#Galeshot_shading1)' : props.palette.Flat
           }
-          href='#Galeshot_segment1_composite'
+          href='#Galeshot_wing_composite'
         />
         <use
           fill={
             options.shading ? 'url(#Galeshot_shading2)' : props.palette.Flat
           }
-          href='#Galeshot_segment1_composite'
+          href='#Galeshot_wing_composite'
           transform='translate(0 512) scale(1 -1)'
         />
-        <g
-          clip-path='url(#Galeshot_segment2_clip1)'
-          id='Galeshot_segment2_composite'
-        >
+        <g clip-path='url(#Galeshot_bow_clip1)'>
           <Show when={options.stroke}>
             <Rectangle y={-44} height={108} fill={props.palette.Dark} />
             <Rectangle y={448} height={108} fill={props.palette.Dark} />
           </Show>
-          <g clip-path='url(#Galeshot_segment2_clip2)'>
+          <g clip-path='url(#Galeshot_bow_clip2)'>
             <g
-              clip-path={
-                options.stroke ? '' : 'url(#Galeshot_segment2_mask_clip)'
-              }
+              clip-path={options.stroke ? null : 'url(#Galeshot_bow_mask_clip)'}
             >
               <Rectangle
                 {...galeshotRectangle}
@@ -164,20 +155,42 @@ export const Galeshot = (props) => {
                 }
               />
               <Show when={options.stroke}>
-                <g stroke={props.palette.Highlight}>
-                  <use {...strokeWidth.x05} href='#Galeshot_segment2_stroke2' />
-                  <use {...strokeWidth.x1} href='#Galeshot_segment2_stroke1' />
+                <g {...strokeWidth.x05} stroke={props.palette.Highlight}>
+                  <use href='#Galeshot_bow_stroke2' />
+                  <use {...strokeWidth.x1} href='#Galeshot_bow_stroke1' />
+                  <use
+                    href='#Galeshot_bow_stroke1'
+                    stroke={props.palette.Dark}
+                  />
                 </g>
-                <use
-                  {...strokeWidth.x05}
-                  href='#Galeshot_segment2_stroke1'
-                  stroke={props.palette.Dark}
-                />
               </Show>
             </g>
           </g>
         </g>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <path
+            id='Galeshot_tiny_mask'
+            d='M1 13 15 11 15 12 1 14 2 19 14 13 16 13 4 19 16 20 16 6 1 6Z'
+          />
+          <clipPath id='Galeshot_tiny_clip'>
+            <use href='#Galeshot_tiny_mask' />
+          </clipPath>
+          <g id='Galeshot_tiny' clip-path='url(#Galeshot_tiny_clip)'>
+            <path d='M5,13c-3,0-4-3-3-4.5,4,1.5,9.5,1,9.5,1,0,0-.5,1.5,3,5l-4.5,4.5c-2,1-3-2-1-3-4,2-6-1-4-3Z' />
+          </g>
+        </defs>
+        <path d='M4,0C2,0,0,1,0,4s5,4,13,4c-1,2,2,5,4,7s5,5,7,4c0,8,1,13,4,13s4-2,4-4c-6,3-5-10-6-11-2-2-2,0-3,0s-3-2-4.5-3.5-3.5-3.5-3.5-4.5,2-1,0-3c-1-1-14,0-11-6Z' />
+        <path d='M9.5,21l10.5-10.5-3-1.5c2-1,10-4,10-4,0,0-3,8-4,10l-1.5-3-10.5,10.5v3l-5.5,5.5v-4.5H1l5.5-5.5h3Z' />
+        <use href='#Galeshot_tiny' />
+        <use href='#Galeshot_tiny' transform='scale(-1 1) rotate(270 0 32)' />
+      </Icon>
+    </Show>
   );
 };

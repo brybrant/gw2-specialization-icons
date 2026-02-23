@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Guardian = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -68,5 +68,34 @@ export const Guardian = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <circle id='Guardian_tiny_mask1' cx={15} cy={26} r={26} />
+          <Rectangle
+            id='Guardian_tiny_mask2'
+            d='M7,19l8-6,8,6v1H7v-1Z'
+            width={32}
+            height={32}
+          />
+          <clipPath id='Guardian_tiny_clip1'>
+            <use href='#Guardian_tiny_mask1' />
+          </clipPath>
+          <clipPath id='Guardian_tiny_clip2'>
+            <use href='#Guardian_tiny_mask2' />
+          </clipPath>
+        </defs>
+        <g clip-path='url(#Guardian_tiny_clip1)'>
+          <path
+            clip-path='url(#Guardian_tiny_clip2)'
+            d='M1,0l2,20s6,8,12,12c6-4,12-12,12-12L29,0H1ZM18,20l-3,8-3-8q-3-8-3-9c0-2,1-4,6-9,5,5,6,7,6,9q0,1-3,9Z'
+          />
+        </g>
+        <path d='M15,19l2-6c1.5-5-2-5-2-5,0,0-3.5,0-2,5l2,6Z' />
+      </Icon>
+    </Show>
   );
 };

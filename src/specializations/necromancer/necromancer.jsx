@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Necromancer = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -86,5 +86,13 @@ export const Necromancer = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <path d='M16,0C10,0,5,3,5,10c0,3,2,5-1,8-2,2,2,6,3,4s4-2,3,1-1,6,1.5,9c-.5-7,1.5-7,1.5-7h6s2,0,1.5,7c2.5-3,2.5-6,1.5-9s2-3,3-1,5-2,3-4c-3-3-1-5-1-8C27,3,22,0,16,0ZM7,15c0-5,7-5,7,0,0,3-7,6-7,0ZM14,20c0-2,2-4,2-4,0,0,2,2,2,4,0,3-2,1-2,1,0,0-2,2-2-1ZM25,15c0,6-7,3-7,0,0-5,7-5,7,0Z' />
+      </Icon>
+    </Show>
   );
 };

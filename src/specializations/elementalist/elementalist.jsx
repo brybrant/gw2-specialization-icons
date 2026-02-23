@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Elementalist = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -81,10 +81,10 @@ export const Elementalist = (props) => {
               }
             />
             <Show when={options.stroke}>
-              <g stroke={props.palette.Highlight}>
+              <g {...strokeWidth.x1} stroke={props.palette.Highlight}>
                 <use {...strokeWidth.x05} href='#Elementalist_stroke3' />
-                <use {...strokeWidth.x1} href='#Elementalist_stroke1' />
-                <use {...strokeWidth.x1} href='#Elementalist_stroke2' />
+                <use href='#Elementalist_stroke1' />
+                <use href='#Elementalist_stroke2' />
               </g>
               <g {...strokeWidth.x05} stroke={props.palette.Dark}>
                 <use href='#Elementalist_stroke1' />
@@ -95,5 +95,13 @@ export const Elementalist = (props) => {
         </g>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <path d='M23,21s2-2,1-7c1,1,2.5,3,2.5,8s-4.5,10-10.5,10-10.5-5-10.5-10c0-4,2-6,2-6-.5,6,4.5,6,4.5,0,0-3-2-6,0-9,0,2,1,4,3,6,4,4,5,10,3,12-6,6-7-5-1.5-1-1.5-4-5.5-2-5.5,1,0,4,6,6,9,0,2-4,0-8-2-11s-4.5-6-4.5-9c0-4,2.5-5,4.5-5,0,0-2.5,1-2.5,3,0,1,.5,3,3.5,7s4,11,4,11Z' />
+      </Icon>
+    </Show>
   );
 };

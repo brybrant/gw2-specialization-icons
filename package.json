@@ -3,7 +3,7 @@
   "author": "brybrant",
   "license": "GPL-3.0-only",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "predev": "node ./palettes.js",
@@ -21,7 +21,7 @@
     "node": "^20.19.0 || >=22.12.0"
   },
   "dependencies": {
-    "solid-js": "^1.9.10",
+    "solid-js": "^1.9.11",
     "svgo": "^4.0.0"
   },
   "devDependencies": {
@@ -30,13 +30,13 @@
     "@brybrant/svg-icons": "github:brybrant/svg-icons",
     "culori": "^4.0.2",
     "eslint-plugin-solid": "^0.14.5",
-    "globals": "^17.0.0",
-    "sass-embedded": "^1.97.2",
+    "globals": "^17.3.0",
+    "sass-embedded": "^1.97.3",
     "vite": "^7.3.1",
-    "vite-plugin-eslint2": "^5.0.4",
+    "vite-plugin-eslint2": "^5.0.5",
     "vite-plugin-solid": "^2.11.10",
     "vite-plugin-solid-svg": "^0.8.1",
-    "vite-plugin-stylelint": "^6.0.2"
+    "vite-plugin-stylelint": "^6.0.4"
   },
   "browserslist": [
     "> 1%, not dead, not ie 11, not op_mini all"

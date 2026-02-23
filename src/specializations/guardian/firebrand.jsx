@@ -6,7 +6,7 @@ import { Rectangle } from '../../components/rectangle';
 
 import { RadialGradient } from '../../components/radial-gradient';
 
-import { outlineStyle, strokeWidth, useOptions } from '../../const';
+import { ellipse, outlineStyle, strokeWidth, useOptions } from '../../const';
 
 /**
  * @param {Object} props
@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Firebrand = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -85,5 +85,35 @@ export const Firebrand = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <circle id='Firebrand_tiny_mask1' cx={16} cy={17} r={17} />
+          <Rectangle
+            id='Firebrand_tiny_mask2'
+            d={`${ellipse(16, 12, 5)}${ellipse(9, 21, 3.5)}${ellipse(23, 21, 3.5)}`}
+            width={32}
+            height={32}
+          />
+          <clipPath id='Firebrand_tiny_clip1'>
+            <use href='#Firebrand_tiny_mask1' />
+          </clipPath>
+          <clipPath id='Firebrand_tiny_clip2'>
+            <use href='#Firebrand_tiny_mask2' />
+          </clipPath>
+        </defs>
+        <g clip-path='url(#Firebrand_tiny_clip1)'>
+          <path
+            clip-path='url(#Firebrand_tiny_clip2)'
+            d='M16,32s3-7,7-8l1-6c-1-4,4-9,8-7.5L30,0H2L0,10.5c4-1.5,9,3.5,8,7.5l1,6c4,1,7,8,7,8Z'
+          />
+        </g>
+        <circle cx={16} cy={14} r={3} />
+        <path d='M14 16 18 16 18 18 14 18Z' />
+      </Icon>
+    </Show>
   );
 };

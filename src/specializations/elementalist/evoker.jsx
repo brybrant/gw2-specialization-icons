@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Evoker = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -100,21 +100,25 @@ export const Evoker = (props) => {
                 <Rectangle fill='url(#Evoker_shading2)' />
               </Show>
               <Show when={options.stroke}>
-                <g stroke={props.palette.Highlight}>
-                  <use {...strokeWidth.x05} href='#Evoker_stroke4' />
-                  <use {...strokeWidth.x05} href='#Evoker_stroke2' />
+                <g {...strokeWidth.x05} stroke={props.palette.Highlight}>
+                  <use href='#Evoker_stroke4' />
+                  <use href='#Evoker_stroke2' />
                   <use {...strokeWidth.x1} href='#Evoker_stroke1' />
+                  <use href='#Evoker_stroke1' stroke={props.palette.Dark} />
                 </g>
-                <use
-                  {...strokeWidth.x05}
-                  href='#Evoker_stroke1'
-                  stroke={props.palette.Dark}
-                />
               </Show>
             </g>
           </g>
         </g>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <path d='M9,28.5c-4-.5-5-3.5-4-6.5,1,0,1,4,4,4,2,0,3-2,1-4-1-1-4.5-1-4.5-3,0-13,4.5-11,4.5-15,0-3-2-4-2-4,3,0,6,4,6,9s-2,12-2,12c3,0,3-5,3-5,3,3,3,7,3,7,0,0,2-1,2-4,0-2-2-4-2-7,1,2,8.5,5,8.5,7s-3.5,2-4.5,3c-2,2-1,4,1,4,3,0,3-4,4-4,1,3,0,6-4,6.5s-4,3.5-7,3.5-3-3-7-3.5ZM26.5,17.5v-1.5c0-7-4.5-9-4.5-12,0-2,1-3,1-3-1,0-5,2-5,9.5,1,2,8.5,5,8.5,7Z' />
+      </Icon>
+    </Show>
   );
 };

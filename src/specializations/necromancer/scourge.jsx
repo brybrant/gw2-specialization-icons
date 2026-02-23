@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Scourge = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -75,5 +75,20 @@ export const Scourge = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <path
+            id='Scourge_tiny'
+            d='M0,31L26,3l-4,1C14-1,2,4,2,15c0,3,1,5,1,5C3,5,15,4,18,6L0,30v1Z'
+          />
+        </defs>
+        <use href='#Scourge_tiny' />
+        <use href='#Scourge_tiny' transform='rotate(180 16 16)' />
+      </Icon>
+    </Show>
   );
 };

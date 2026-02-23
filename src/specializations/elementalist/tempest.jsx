@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Tempest = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -68,5 +68,21 @@ export const Tempest = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <path
+            id='Tempest_tiny'
+            d='M15,15c3,2,7,1,7-3.5,0-6.5-7-8.5-13-5.5,3-3,7-2,7-2C8,1,4,7,2,10,3,7,6,1,13.5,1c3.5,0,8.5,2,10.5,6,5,10-6,17-9,8Z'
+          />
+        </defs>
+        <use href='#Tempest_tiny' />
+        <use href='#Tempest_tiny' transform='rotate(120 16 16)' />
+        <use href='#Tempest_tiny' transform='rotate(240 16 16)' />
+      </Icon>
+    </Show>
   );
 };

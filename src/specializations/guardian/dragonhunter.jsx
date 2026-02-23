@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Dragonhunter = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -25,7 +25,7 @@ export const Dragonhunter = (props) => {
     >
       <defs>
         <RadialGradient
-          id='Dragonhunter_shading1'
+          id='Dragonhunter_right_shading'
           viewBox={[0, 0, 512, 512]}
           cx={348.0923}
           cy={226.2457}
@@ -42,7 +42,7 @@ export const Dragonhunter = (props) => {
           ]}
         />
         <RadialGradient
-          id='Dragonhunter_shading2'
+          id='Dragonhunter_left_shading'
           viewBox={[-256, 0, 512, 512]}
           cx={163.9077}
           cy={226.2457}
@@ -90,12 +90,12 @@ export const Dragonhunter = (props) => {
           <Rectangle
             fill={
               options.shading
-                ? 'url(#Dragonhunter_shading1)'
+                ? 'url(#Dragonhunter_right_shading)'
                 : props.palette.Flat
             }
           />
           <Show when={options.shading}>
-            <Rectangle x='-256' fill='url(#Dragonhunter_shading2)' />
+            <Rectangle fill='url(#Dragonhunter_left_shading)' x={-256} />
           </Show>
           <Show when={options.stroke}>
             <use
@@ -112,5 +112,28 @@ export const Dragonhunter = (props) => {
         </g>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <path id='Dragonhunter_tiny' d='M16,10L6,0l3,13-7-2s5,13,14,21' />
+          <clipPath id='Dragonhunter_tiny_clip'>
+            <use href='#Dragonhunter_tiny' />
+          </clipPath>
+        </defs>
+        <use href='#Dragonhunter_tiny' />
+        <use
+          clip-path='url(#Dragonhunter_tiny_clip)'
+          fill='none'
+          href='#Dragonhunter_tiny'
+          stroke={props.palette.Flat}
+          stroke-linecap='square'
+          stroke-width={5}
+          transform='translate(32) scale(-1 1)'
+        />
+      </Icon>
+    </Show>
   );
 };

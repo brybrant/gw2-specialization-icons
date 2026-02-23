@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Revenant = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -25,7 +25,7 @@ export const Revenant = (props) => {
     >
       <defs>
         <RadialGradient
-          id='Revenant_shading1'
+          id='Revenant_right_shading'
           viewBox={[0, 0, 512, 512]}
           cy={228.17}
           fy={64.01}
@@ -38,7 +38,7 @@ export const Revenant = (props) => {
           ]}
         />
         <RadialGradient
-          id='Revenant_shading2'
+          id='Revenant_left_shading'
           viewBox={[0, 0, 256, 512]}
           cx={256}
           cy={228.17}
@@ -69,11 +69,13 @@ export const Revenant = (props) => {
       <g clip-path='url(#Revenant_clip)'>
         <Rectangle
           fill={
-            options.shading ? 'url(#Revenant_shading1)' : props.palette.Flat
+            options.shading
+              ? 'url(#Revenant_right_shading)'
+              : props.palette.Flat
           }
         />
         <Show when={options.shading}>
-          <Rectangle width='256' fill='url(#Revenant_shading2)' />
+          <Rectangle fill='url(#Revenant_left_shading)' width={256} />
         </Show>
         <Show when={options.stroke}>
           <use
@@ -89,5 +91,13 @@ export const Revenant = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <path d='M0,13v-1L16,0l16,12v1l-16-7L0,13ZM19,11l-3-3-3,3c2,1,4,1,6,0ZM9,11c1,2,5,3.5,5,3.5,0,7,2,17.5,2,17.5,0,0,2-10.5,2-17.5,0,0,4-1.5,5-3.5-5,3-9,3-14,0ZM12,16s-3-1-6-4l-2,1c5,5,8.5,6,8.5,6l-.5-3ZM19.5,19s3.5-1,8.5-6l-2-1c-3,3-6,4-6,4l-.5,3Z' />
+      </Icon>
+    </Show>
   );
 };

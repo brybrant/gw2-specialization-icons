@@ -1,8 +1,58 @@
 import { useOptions } from '../../const';
 
 /**
+ * Minimise SVG node ID lengths and return encoded string for downloading
+ * @param {SVGSVGElement} svg
+ */
+function encodeSVG(svg) {
+  const matches = svg.outerHTML.matchAll(/id="(\w+)"/g);
+
+  let uid = 0;
+
+  /** @type {[String, String][]} */
+  const ids = [];
+
+  for (const match of matches) {
+    let id = ((uid++ % 26) + 10).toString(36);
+
+    const quotient = uid / 26;
+
+    if (quotient > 1) id = (Math.floor(quotient) + 9).toString(36) + id;
+
+    ids.push([match[1], id]);
+  }
+
+  let svgString = svg.outerHTML;
+
+  for (const id of ids) {
+    const oldId = id[0];
+
+    const newId = id[1];
+
+    // Replace `id` attribute values
+    svgString = svgString.replaceAll(`id="${oldId}"`, `id="${newId}"`);
+
+    // Replace `href` attribute values
+    svgString = svgString.replaceAll(`href="#${oldId}"`, `href="#${newId}"`);
+
+    // Replace `fill` and `clip-path` attribute values
+    svgString = svgString.replaceAll(`"url(#${oldId})"`, `"url(#${newId})"`);
+  }
+
+  // `offset` attribute value is `0` by default
+  svgString = svgString.replaceAll(' offset="0"', '');
+
+  return encodeURIComponent(
+    new XMLSerializer().serializeToString(
+      new DOMParser().parseFromString(svgString, 'image/svg+xml'),
+    ),
+  );
+}
+
+/**
  * @param {Object} props
  * @param {String} props.name - Name of specialization
+ * @param {Number} props.size - Size of the icon
  * @param {SVGSVGElement} props.svg - Icon element (ref) to be downloaded
  */
 export function Download(props) {
@@ -13,18 +63,19 @@ export function Download(props) {
       onClick={() => {
         const fileName = [
           props.name,
-          [
-            Number(options.crop),
-            Number(options.outline),
-            Number(options.shading),
-            Number(options.stroke),
-          ].join(''),
-          ...(!options.crop || options.square ? ['Square'] : []),
+          options.tiny
+            ? 'Tiny'
+            : [
+                Number(options.crop),
+                Number(options.outline),
+                Number(options.shading),
+                Number(options.stroke),
+                ...(!options.crop || options.square ? ['_Square'] : []),
+              ].join(''),
+          ...(options.rasterize ? [props.size] : []),
         ].join('_');
 
-        const encodedSVG = encodeURIComponent(
-          new XMLSerializer().serializeToString(props.svg),
-        );
+        const encodedSVG = encodeSVG(props.svg);
 
         if (options.rasterize) {
           const width = props.svg.clientWidth;
@@ -46,7 +97,7 @@ export function Download(props) {
               const link = document.createElement('a');
               const url = URL.createObjectURL(blob);
               link.href = url;
-              link.download = `${fileName}_${options.size}.png`;
+              link.download = `${fileName}.png`;
               link.click();
               URL.revokeObjectURL(url);
             });

@@ -8,6 +8,8 @@ import {
   Show,
 } from 'solid-js';
 
+import { createStore } from 'solid-js/store';
+
 import { render, Dynamic } from 'solid-js/web';
 
 import GitHubSVG from '@brybrant/svg-icons/GitHub.svg';
@@ -16,11 +18,9 @@ import { Vertical } from '@brybrant/fade-scroll';
 
 import { Favicon } from './components/favicon';
 
-import { createStoredStore } from './components/stored-store';
-
 import * as Control from './components/form-controls';
 
-import { fourDecimals, iconSize, OptionsContext } from './const';
+import { defaultOptions, OptionsContext } from './const';
 
 import palettes from './palettes';
 import * as specializations from './specializations/specializations';
@@ -49,13 +49,21 @@ const createProfession = (name, specializationsArray) => {
   const palette = palettes[name];
 
   for (const specializationObject of specializationsArray) {
-    const [paletteStore, setPalette] = createStoredStore(
-      `${specializationObject.name}_palette`,
+    /** @type {[Palette, import('solid-js/store').SetStoreFunction<Palette>]} */
+    const [paletteStore, setPalette] = createStore(
       JSON.parse(JSON.stringify(palette)),
     );
 
-    specializationObject.palette = paletteStore;
-    specializationObject.setPalette = setPalette;
+    Object.defineProperties(specializationObject, {
+      palette: {
+        get() {
+          return paletteStore;
+        },
+      },
+      setPalette: {
+        value: setPalette,
+      },
+    });
   }
 
   return Object.freeze({
@@ -86,6 +94,7 @@ const dispose = render(() => {
       { name: 'Firebrand', component: specializations.Firebrand },
       { name: 'Guardian', component: specializations.Guardian },
       { name: 'Luminary', component: specializations.Luminary },
+      { name: 'Luminary (2026)', component: specializations.Luminary2026 },
       { name: 'Willbender', component: specializations.Willbender },
     ]),
     createProfession('Mesmer', [
@@ -118,6 +127,7 @@ const dispose = render(() => {
     ]),
     createProfession('Thief', [
       { name: 'Antiquary', component: specializations.Antiquary },
+      { name: 'Antiquary (2026)', component: specializations.Antiquary2026 },
       { name: 'Daredevil', component: specializations.Daredevil },
       { name: 'Deadeye', component: specializations.Deadeye },
       { name: 'Specter', component: specializations.Specter },
@@ -138,21 +148,44 @@ const dispose = render(() => {
     Math.random() * (professions[randomProfession].specializations.length - 1),
   );
 
-  /** @type {[Options, import('solid-js/store').SetStoreFunction<Options>]} */
-  const [options, setOptions] = createStoredStore('options', {
-    backgroundColor: '#ffffff',
-    backgroundOpacity: 1,
-    checkerboard: true,
-    cropmarks: true,
+  /** @type {Options} */
+  const storedOptions = JSON.parse(localStorage.getItem('options')) ?? {
     specialization: [randomProfession, randomSpecialization],
-    crop: false,
-    square: false,
-    outline: false,
-    shading: false,
-    stroke: false,
-    size: iconSize.default,
-    rasterize: true,
-  });
+  };
+
+  /** @type {Options} */
+  const mergedOptions = {};
+
+  for (const key of Object.keys(defaultOptions)) {
+    if (Object.prototype.hasOwnProperty.call(storedOptions, key)) {
+      if (typeof storedOptions[key] === typeof defaultOptions[key]) {
+        mergedOptions[key] = storedOptions[key];
+        continue;
+      }
+    }
+
+    mergedOptions[key] = defaultOptions[key];
+  }
+
+  /** @type {[Options, import('solid-js/store').SetStoreFunction<Options>]} */
+  const [options, setOptions] = createStore(mergedOptions);
+
+  createEffect(() => localStorage.setItem('options', JSON.stringify(options)));
+
+  const normalMax = 1024;
+  const normalMin = 32;
+  const normalStep = 32;
+
+  const tinyMax = 32;
+  const tinyMin = 16;
+  const tinyStep = 1;
+
+  /** @type {import('solid-js').Accessor<'sizeTiny'|'sizeNormal'>} */
+  const sizeKey = createMemo(() => `size${options.tiny ? 'Tiny' : 'Normal'}`);
+  const sizeMin = createMemo(() => (options.tiny ? tinyMin : normalMin));
+  const sizeMax = createMemo(() => (options.tiny ? tinyMax : normalMax));
+  const sizeStep = createMemo(() => (options.tiny ? tinyStep : normalStep));
+  const size = createMemo(() => options[sizeKey()]);
 
   const activeProfession = createMemo(() => {
     return professions[options.specialization[0]];
@@ -183,23 +216,25 @@ const dispose = render(() => {
     let height;
 
     if (!options.crop || options.square || viewBox.width === viewBox.height) {
-      width = height = options.size;
+      width = height = size();
     } else {
       if (viewBox.width > viewBox.height) {
-        width = options.size;
-        height = options.size * aspectRatio;
+        width = size();
+        height = size() * aspectRatio;
       } else {
-        width = options.size * aspectRatio;
-        height = options.size;
+        width = size() * aspectRatio;
+        height = size();
       }
     }
 
-    iconRef.dataset.specialization = activeSpecialization().name;
     iconRef.style.width = `${width}px`;
     iconRef.style.height = `${height}px`;
 
     // Necessary to listen for these signals to re-run effect when these change
-    if (options.outline || options.stroke) return;
+    iconRef.dataset.specialization = activeSpecialization().name;
+    iconRef.dataset.outline = Number(options.outline);
+    iconRef.dataset.stroke = Number(options.stroke);
+    iconRef.dataset.tiny = Number(options.tiny);
   });
 
   /** @type {HTMLDivElement} */
@@ -218,38 +253,24 @@ const dispose = render(() => {
 
   return (
     <OptionsContext.Provider value={options}>
-      <div role='none' style={{ display: 'none' }}>
-        <Favicon />
-      </div>
+      <Favicon palette={activeSpecialization().palette} />
       <main>
         <div
           class='preview'
           onWheel={(e) => {
             e.preventDefault();
             if (e.deltaY < 0) {
-              setOptions(
-                'size',
-                Math.min(iconSize.max, options.size + iconSize.step),
-              );
+              setOptions(sizeKey(), Math.min(sizeMax(), size() + sizeStep()));
             } else if (e.deltaY > 0) {
-              setOptions(
-                'size',
-                Math.max(iconSize.min, options.size - iconSize.step),
-              );
+              setOptions(sizeKey(), Math.max(sizeMin(), size() - sizeStep()));
             }
           }}
-          style={{
-            background: options.checkerboard ? null : 'none',
-          }}
+          style={{ background: options.background }}
         >
+          <Show when={options.checkerboard}>
+            <div class='preview__checkerboard' />
+          </Show>
           <div class='icon'>
-            <div
-              class='icon__background'
-              style={{
-                background: options.backgroundColor,
-                opacity: options.backgroundOpacity,
-              }}
-            />
             <Show when={options.cropmarks}>
               <div class='icon__cropmark icon__cropmark--top-left' />
               <div class='icon__cropmark icon__cropmark--top-right' />
@@ -270,21 +291,9 @@ const dispose = render(() => {
               <legend>Preview</legend>
               <Control.ColorPicker
                 label='Background Color'
-                default={'#ffffff'}
-                value={options.backgroundColor}
-                callback={(color) => setOptions('backgroundColor', color)}
-              />
-              <Control.Range
-                label={`Background Opacity: ${Math.round(
-                  options.backgroundOpacity * 100,
-                )}%`}
-                min={0}
-                max={1}
-                step={'any'}
-                value={options.backgroundOpacity}
-                callback={(value) => {
-                  setOptions('backgroundOpacity', fourDecimals(value));
-                }}
+                default={defaultOptions.background}
+                value={options.background}
+                callback={(color) => setOptions('background', color)}
               />
               <div>
                 <Control.Checkbox
@@ -318,27 +327,36 @@ const dispose = render(() => {
               <legend>Icon</legend>
               <div>
                 <Control.Checkbox
+                  label='Tiny'
+                  value={options.tiny}
+                  callback={(checked) => setOptions('tiny', checked)}
+                />
+                <Control.Checkbox
+                  disabled={options.tiny}
                   label='Crop'
                   value={options.crop}
                   callback={(checked) => setOptions('crop', checked)}
                 />
                 <Control.Checkbox
-                  disabled={!options.crop}
+                  disabled={options.tiny || !options.crop}
                   label='Square'
                   value={options.square}
                   callback={(checked) => setOptions('square', checked)}
                 />
                 <Control.Checkbox
+                  disabled={options.tiny}
                   label='Outline'
                   value={options.outline}
                   callback={(checked) => setOptions('outline', checked)}
                 />
                 <Control.Checkbox
+                  disabled={options.tiny}
                   label='Shading'
                   value={options.shading}
                   callback={(checked) => setOptions('shading', checked)}
                 />
                 <Control.Checkbox
+                  disabled={options.tiny}
                   label='Stroke'
                   value={options.stroke}
                   callback={(checked) => setOptions('stroke', checked)}
@@ -379,53 +397,55 @@ const dispose = render(() => {
                   }
                 }
               />
-              <Show when={options.shading || options.stroke}>
-                <Control.ColorPicker
-                  label='Highlight'
-                  default={activeProfession().palette.Highlight}
-                  value={activeSpecialization().palette.Highlight}
-                  callback={(color) => {
-                    activeSpecialization().setPalette('Highlight', color);
-                  }}
-                />
+              <Show when={!options.tiny}>
+                <Show when={options.shading || options.stroke}>
+                  <Control.ColorPicker
+                    label='Highlight'
+                    default={activeProfession().palette.Highlight}
+                    value={activeSpecialization().palette.Highlight}
+                    callback={(color) => {
+                      activeSpecialization().setPalette('Highlight', color);
+                    }}
+                  />
+                </Show>
+                <Show when={options.shading}>
+                  <Control.ColorPicker
+                    label='Neutral'
+                    default={activeProfession().palette.Neutral}
+                    value={activeSpecialization().palette.Neutral}
+                    callback={(color) => {
+                      activeSpecialization().setPalette('Neutral', color);
+                    }}
+                  />
+                  <Control.ColorPicker
+                    label='Midtone'
+                    default={activeProfession().palette.Midtone}
+                    value={activeSpecialization().palette.Midtone}
+                    callback={(color) => {
+                      activeSpecialization().setPalette('Midtone', color);
+                    }}
+                  />
+                  <Control.ColorPicker
+                    label='Shadow'
+                    default={activeProfession().palette.Shadow}
+                    value={activeSpecialization().palette.Shadow}
+                    callback={(color) => {
+                      activeSpecialization().setPalette('Shadow', color);
+                    }}
+                  />
+                </Show>
+                <Show when={options.stroke}>
+                  <Control.ColorPicker
+                    label='Dark'
+                    default={activeProfession().palette.Dark}
+                    value={activeSpecialization().palette.Dark}
+                    callback={(color) => {
+                      activeSpecialization().setPalette('Dark', color);
+                    }}
+                  />
+                </Show>
               </Show>
-              <Show when={options.shading}>
-                <Control.ColorPicker
-                  label='Neutral'
-                  default={activeProfession().palette.Neutral}
-                  value={activeSpecialization().palette.Neutral}
-                  callback={(color) => {
-                    activeSpecialization().setPalette('Neutral', color);
-                  }}
-                />
-                <Control.ColorPicker
-                  label='Midtone'
-                  default={activeProfession().palette.Midtone}
-                  value={activeSpecialization().palette.Midtone}
-                  callback={(color) => {
-                    activeSpecialization().setPalette('Midtone', color);
-                  }}
-                />
-                <Control.ColorPicker
-                  label='Shadow'
-                  default={activeProfession().palette.Shadow}
-                  value={activeSpecialization().palette.Shadow}
-                  callback={(color) => {
-                    activeSpecialization().setPalette('Shadow', color);
-                  }}
-                />
-              </Show>
-              <Show when={options.stroke}>
-                <Control.ColorPicker
-                  label='Dark'
-                  default={activeProfession().palette.Dark}
-                  value={activeSpecialization().palette.Dark}
-                  callback={(color) => {
-                    activeSpecialization().setPalette('Dark', color);
-                  }}
-                />
-              </Show>
-              <Show when={!options.shading}>
+              <Show when={options.tiny || !options.shading}>
                 <Control.ColorPicker
                   label='Flat'
                   default={activeProfession().palette.Flat}
@@ -457,22 +477,36 @@ const dispose = render(() => {
             </fieldset>
             <fieldset>
               <legend>Output</legend>
-              <Control.Range
-                label={`Size: ${options.size}px`}
-                min={iconSize.min}
-                max={iconSize.max}
-                step={iconSize.step}
-                value={options.size}
-                callback={(value) => setOptions('size', value)}
-                list={[
-                  { label: '32px', value: 32 },
-                  { label: '64px', value: 64 },
-                  { label: '128px', value: 128 },
-                  { label: '256px', value: 256 },
-                  { label: '512px', value: 512 },
-                  { label: '1024px', value: 1024 },
-                ]}
-              />
+              <Show
+                when={options.tiny}
+                fallback={
+                  <Control.Range
+                    label={`Size: ${options.sizeNormal}px`}
+                    min={normalMin}
+                    max={normalMax}
+                    step={normalStep}
+                    value={options.sizeNormal}
+                    callback={(value) => setOptions('sizeNormal', value)}
+                    list={[
+                      { label: '32px', value: 32 },
+                      { label: '64px', value: 64 },
+                      { label: '128px', value: 128 },
+                      { label: '256px', value: 256 },
+                      { label: '512px', value: 512 },
+                      { label: '1024px', value: 1024 },
+                    ]}
+                  />
+                }
+              >
+                <Control.Range
+                  label={`Size: ${options.sizeTiny}px`}
+                  min={tinyMin}
+                  max={tinyMax}
+                  step={tinyStep}
+                  value={options.sizeTiny}
+                  callback={(value) => setOptions('sizeTiny', value)}
+                />
+              </Show>
               <div>
                 <Control.Checkbox
                   label='Rasterize'
@@ -483,6 +517,7 @@ const dispose = render(() => {
               <div class='form__group'>
                 <Control.Download
                   name={activeSpecialization().name}
+                  size={size()}
                   svg={iconRef.firstElementChild}
                 />
               </div>

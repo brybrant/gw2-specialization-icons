@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Herald = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -92,5 +92,13 @@ export const Herald = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <path d='M16,22s1-2,3-2,2,4,4,4,2-4,2-4c0,0,1,1,1,2l4,2h-4l2,4-3-2h-3c-3,0-3-4-4-4h-2ZM9,16s-2,3-7,4c2,2,6,2,6,2,1,3,8,8,8,8,0,0-1,1-4,1,0,0,1,1,3,1,5,0,8-2,8-4,0,0-1,1-4,1,0,0-7-6-6-8l2-3h6c4,0,6.5-1,6.5-1,2.5,2,4.5,5,4.5,5,0-7-4.5-10-4.5-10,0,0-.5,2-3.5,2h-3l-1-4c-3,2-8-8-8-8,0,4,0,6,1.5,8-3.5,0-6.5-5-5.5-10-3,1-4,7-3,10,2-1,4,1,2,2,0,0-4,2-7,0,1,2,4,4,4,4l5-1v1ZM12,16l1-2h1v-2h1l6,4h-9Z' />
+      </Icon>
+    </Show>
   );
 };

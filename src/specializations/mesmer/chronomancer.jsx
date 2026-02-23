@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Chronomancer = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -25,7 +25,7 @@ export const Chronomancer = (props) => {
     >
       <defs>
         <RadialGradient
-          id='Chronomancer_segment1_shading'
+          id='Chronomancer_clock_shading'
           viewBox={[0, 0, 512, 512]}
           cy={223.4723}
           fy={190.944625}
@@ -38,7 +38,7 @@ export const Chronomancer = (props) => {
           ]}
         />
         <RadialGradient
-          id='Chronomancer_segment2_shading1'
+          id='Chronomancer_swirl_shading1'
           viewBox={[0, 0, 512, 512]}
           cy={163.2392}
           fy={72.2757}
@@ -51,7 +51,7 @@ export const Chronomancer = (props) => {
           ]}
         />
         <RadialGradient
-          id='Chronomancer_segment2_shading2'
+          id='Chronomancer_swirl_shading2'
           viewBox={[0, 0, 512, 512]}
           cy={269.0273}
           fy={283.8706}
@@ -64,48 +64,48 @@ export const Chronomancer = (props) => {
           ]}
         />
         <path
-          id='Chronomancer_segment1'
+          id='Chronomancer_clock'
           d='M256,125.8893c-71.8582,0-130.1107,58.2525-130.1107,130.1107s58.2525,130.1107,130.1107,130.1107,130.1107-58.2525,130.1107-130.1107-58.2525-130.1107-130.1107-130.1107ZM333.7053,200.4376c9.5538-5.5159,19.3728-6.3947,21.9315-1.963,2.5587,4.4318-3.1119,12.4959-12.6656,18.0118-9.5537,5.5158-19.3728,6.3947-21.9315,1.9629-2.5587-4.4318,3.1119-12.4959,12.6656-18.0117ZM295.5135,169.0289c5.5159-9.5538,13.58-15.2244,18.0117-12.6657,4.4318,2.5587,3.553,12.3777-1.9629,21.9315-5.5158,9.5537-13.58,15.2243-18.0118,12.6656-4.4318-2.5587-3.5529-12.3777,1.963-21.9315ZM140.9494,256c0-5.1174,8.943-9.2658,19.9747-9.2658s19.9747,4.1484,19.9747,9.2658-8.943,9.2658-19.9747,9.2658-19.9747-4.1484-19.9747-9.2658ZM178.2947,311.5624c-9.5538,5.5159-19.3728,6.3947-21.9315,1.9629-2.5587-4.4318,3.1119-12.4958,12.6656-18.0117,9.5537-5.5159,19.3728-6.3947,21.9315-1.963,2.5587,4.4318-3.1119,12.4959-12.6656,18.0118ZM190.9604,218.4493c-2.5587,4.4318-12.3777,3.5529-21.9315-1.9629-9.5538-5.5159-15.2244-13.58-12.6656-18.0118,2.5587-4.4318,12.3777-3.5529,21.9315,1.963,9.5537,5.5158,15.2244,13.58,12.6656,18.0117ZM216.4865,342.9711c-5.5159,9.5538-13.58,15.2244-18.0118,12.6656-4.4318-2.5587-3.5529-12.3777,1.963-21.9315,5.5158-9.5537,13.58-15.2244,18.0117-12.6656,4.4318,2.5587,3.553,12.3777-1.9629,21.9315ZM218.4493,190.9604c-4.4318,2.5587-12.4959-3.1119-18.0117-12.6656-5.5159-9.5538-6.3947-19.3728-1.963-21.9315,4.4318-2.5587,12.4959,3.1119,18.0118,12.6657,5.5159,9.5537,6.3947,19.3727,1.9629,21.9315ZM256,371.0506c-5.1174,0-9.2658-8.9429-9.2658-19.9747s4.1484-19.9747,9.2658-19.9747,9.2658,8.943,9.2658,19.9747-4.1484,19.9747-9.2658,19.9747ZM313.5253,355.6367c-4.4318,2.5587-12.4959-3.1119-18.0118-12.6656-5.5159-9.5537-6.3947-19.3728-1.9629-21.9315,4.4318-2.5587,12.4959,3.1119,18.0117,12.6656,5.5159,9.5538,6.3947,19.3728,1.963,21.9315ZM355.6367,313.5253c-3.8902,6.738-23.6582.6347-32.3021-10.7094-19.1071-8.525-51.089-22.7944-66.3812-29.6172-16.4214.8995-24.4911-19.3593-12.3755-30.0968l5.0616-67.6785c-6.0855-12.41-1.9639-34.4739,6.3605-34.4739,8.4121,0,12.3861,22.1854,6.3605,34.4738l5.0616,67.6786c1.6253,1.4404,2.9742,3.1783,3.9636,5.1351l58.8253,42.6685c13.978,1.7923,29.3789,15.7726,25.4256,22.6198ZM351.0759,265.2658c-11.0317,0-19.9747-4.1484-19.9747-9.2658s8.943-9.2658,19.9747-9.2658,19.9747,4.1484,19.9747,9.2658-8.943,9.2658-19.9747,9.2658Z'
         />
         <circle
-          id='Chronomancer_segment1_stroke'
-          cx='256'
-          cy='256'
-          r='130.11065'
+          id='Chronomancer_clock_stroke'
+          cx={256}
+          cy={256}
+          r={130.11065}
         />
         <path
-          id='Chronomancer_segment2'
+          id='Chronomancer_swirl'
           d='M407.08,152.83C299.9841,27.5406,94.2089,110.4521,103.57,275.01c-16.18-.15-31.88-2.32-46.86-6.28-.7345-186.777,239.6107-266.2948,350.37-115.9Z'
         />
-        <clipPath id='Chronomancer_segment1_clip'>
-          <use href='#Chronomancer_segment1' />
+        <clipPath id='Chronomancer_clock_clip'>
+          <use href='#Chronomancer_clock' />
         </clipPath>
-        <clipPath id='Chronomancer_segment2_clip'>
-          <use href='#Chronomancer_segment2' />
+        <clipPath id='Chronomancer_swirl_clip'>
+          <use href='#Chronomancer_swirl' />
         </clipPath>
         <g
-          clip-path='url(#Chronomancer_segment2_clip)'
-          id='Chronomancer_segment2_composite'
+          id='Chronomancer_swirl_composite'
+          clip-path='url(#Chronomancer_swirl_clip)'
         >
           <Rectangle />
           <Show when={options.stroke}>
             <g fill='none'>
               <use
                 {...strokeWidth.x1}
-                href='#Chronomancer_segment2'
+                href='#Chronomancer_swirl'
                 stroke={props.palette.Highlight}
               />
               <use
                 {...strokeWidth.x05}
-                href='#Chronomancer_segment2'
+                href='#Chronomancer_swirl'
                 stroke={props.palette.Dark}
               />
             </g>
           </Show>
         </g>
       </defs>
-      <Show when={options.stroke}>
-        <circle cx='256' cy='256' fill={props.palette.Dark} r='130' />
+      <Show when={!options.outline && options.stroke}>
+        <circle cx={256} cy={256} fill={props.palette.Dark} r={130} />
       </Show>
       <Show when={options.outline}>
         <path
@@ -116,40 +116,69 @@ export const Chronomancer = (props) => {
       <use
         fill={
           options.shading
-            ? 'url(#Chronomancer_segment2_shading1)'
+            ? 'url(#Chronomancer_swirl_shading1)'
             : props.palette.Flat
         }
-        href='#Chronomancer_segment2_composite'
+        href='#Chronomancer_swirl_composite'
       />
       <use
         fill={
           options.shading
-            ? 'url(#Chronomancer_segment2_shading2)'
+            ? 'url(#Chronomancer_swirl_shading2)'
             : props.palette.Flat
         }
-        href='#Chronomancer_segment2_composite'
+        href='#Chronomancer_swirl_composite'
         transform='rotate(180 256 256)'
       />
-      <g clip-path='url(#Chronomancer_segment1_clip)'>
+      <g clip-path='url(#Chronomancer_clock_clip)'>
         <Rectangle
           fill={
             options.shading
-              ? 'url(#Chronomancer_segment1_shading)'
+              ? 'url(#Chronomancer_clock_shading)'
               : props.palette.Flat
           }
         />
         <Show when={options.stroke}>
-          <g stroke={props.palette.Highlight}>
-            <use {...strokeWidth.x1} href='#Chronomancer_segment1_stroke' />
-            <use {...strokeWidth.x05} href='#Chronomancer_segment1' />
+          <g {...strokeWidth.x05} stroke={props.palette.Highlight}>
+            <use {...strokeWidth.x1} href='#Chronomancer_clock_stroke' />
+            <use href='#Chronomancer_clock' />
+            <use
+              href='#Chronomancer_clock_stroke'
+              stroke={props.palette.Dark}
+            />
           </g>
-          <use
-            {...strokeWidth.x05}
-            href='#Chronomancer_segment1_stroke'
-            stroke={props.palette.Dark}
-          />
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <path
+            id='Chronomancer_tiny'
+            d='M0,17C0,0,21-5,28,8,22,0,4,1,4,17c-2,1-4,0-4,0Z'
+          />
+          <Rectangle
+            id='Chronomancer_tiny_mask'
+            d='M22,18h-7v-9s0-2,1-2,1,2,1,2v7h5s1,0,1,1-1,1-1,1Z'
+            width={32}
+            height={32}
+          />
+          <clipPath id='Chronomancer_tiny_clip'>
+            <use href='#Chronomancer_tiny_mask' />
+          </clipPath>
+        </defs>
+        <circle
+          clip-path='url(#Chronomancer_tiny_clip)'
+          cx={16}
+          cy={16}
+          r={10}
+        />
+        <use href='#Chronomancer_tiny' />
+        <use href='#Chronomancer_tiny' transform='rotate(180 16 16)' />
+      </Icon>
+    </Show>
   );
 };

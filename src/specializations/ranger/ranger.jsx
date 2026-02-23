@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Ranger = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -72,5 +72,13 @@ export const Ranger = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <path d='M5,26c-3-1-3-7,2-7,4,0,4-1,6-2,1.375-.6875,4-1,5,2s1,4,3,6,0,7-5,7c-1,0-3,0-4-2-2-4-4-3-7-4ZM10,11c0,3,2,3,4,3s4-4,7-14c-6,3-11,9-11,11ZM25,2c-4,7-6,10-6,12s2,3,3,3c2,0,6-1,3-15ZM24,19c-4,2-1,6,2,6s5-2,5-5c0-4-1-6-1-6,0,3-4,4-6,5ZM2,11c0,2,1,5,3,5,3,0,4-5,2-7s-2-5-2-5c-2,1-3,4-3,7Z' />
+      </Icon>
+    </Show>
   );
 };

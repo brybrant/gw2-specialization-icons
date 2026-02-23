@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Mesmer = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -68,5 +68,13 @@ export const Mesmer = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <path d='M16,12C14,8,9,3,0,3.5c0,6.5,6,12.5,6,12.5,0,0,1-2,4-2,2,0,4,1,4,3v2h-4c-3,0-4-3-4-3-4,7,3,13,5,13-1-4,1-9,5-4,4-5,6,0,5,4,2,0,9-6,5-13,0,0-1,3-4,3h-4v-2c0-2,2-3,4-3,3,0,4,2,4,2,0,0,6-6,6-12.5-9-.5-14,4.5-16,8.5Z' />
+      </Icon>
+    </Show>
   );
 };

@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Conduit = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -236,8 +236,8 @@ export const Conduit = (props) => {
           <use href='#Conduit_segment5' />
         </clipPath>
         <g
-          clip-path='url(#Conduit_segment1_clip)'
           id='Conduit_segment1_composite'
+          clip-path='url(#Conduit_segment1_clip)'
         >
           <Rectangle
             fill={
@@ -270,8 +270,8 @@ export const Conduit = (props) => {
           </Show>
         </g>
         <g
-          clip-path='url(#Conduit_segment2_clip)'
           id='Conduit_segment2_composite'
+          clip-path='url(#Conduit_segment2_clip)'
         >
           <Rectangle
             fill={
@@ -304,8 +304,8 @@ export const Conduit = (props) => {
           </Show>
         </g>
         <g
-          clip-path='url(#Conduit_segment3_clip)'
           id='Conduit_segment3_composite'
+          clip-path='url(#Conduit_segment3_clip)'
         >
           <Rectangle
             fill={
@@ -334,8 +334,8 @@ export const Conduit = (props) => {
           </Show>
         </g>
         <g
-          clip-path='url(#Conduit_segment4_clip)'
           id='Conduit_segment4_composite'
+          clip-path='url(#Conduit_segment4_clip)'
         >
           <Rectangle
             fill={
@@ -389,7 +389,7 @@ export const Conduit = (props) => {
           }
         />
         <Show when={options.shading}>
-          <Rectangle width='256' fill='url(#Conduit_segment5_shading2)' />
+          <Rectangle fill='url(#Conduit_segment5_shading2)' width={256} />
         </Show>
         <Show when={options.stroke}>
           <use
@@ -405,5 +405,41 @@ export const Conduit = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <path
+            id='Conduit_tiny1'
+            d='M0,2c2,0,5,2,6.5,4v8c0,6,.5,8,.5,8-4-3-5-6-5-6V7C2,4,0,2,0,2Z'
+          />
+          <path
+            id='Conduit_tiny2'
+            d='M8,4s1.5,0,1.5,4v6c0,8,2.5,10,2.5,10,1-3,3-5,3-5,0,0-.5-1-.5-6v-7c0-4-2.5-6-2.5-6-2,3-4,4-4,4Z'
+          />
+          <path
+            id='Conduit_tiny3'
+            d='M0,18v2c0,4,3,8,3.5,8s3-2,3-4c-.5,0-5.5-3-6.5-6Z'
+          />
+          <path
+            id='Conduit_tiny4'
+            d='M9.5,31s-1.5-1-1.5-4c0-2,.5-4,.5-4,1,2,3.5,3,3.5,4,0,2-2,4-2.5,4Z'
+          />
+        </defs>
+        <use href='#Conduit_tiny1' />
+        <use href='#Conduit_tiny2' />
+        <use href='#Conduit_tiny3' />
+        <use href='#Conduit_tiny4' />
+        <path d='M16,22c-1,3-2.5,5-2.5,5,0,3,.5,5,2.5,5s2.5-2,2.5-5c0,0-1.5-2-2.5-5Z' />
+        <g transform='translate(32) scale(-1 1)'>
+          <use href='#Conduit_tiny1' />
+          <use href='#Conduit_tiny2' />
+          <use href='#Conduit_tiny3' />
+          <use href='#Conduit_tiny4' />
+        </g>
+      </Icon>
+    </Show>
   );
 };

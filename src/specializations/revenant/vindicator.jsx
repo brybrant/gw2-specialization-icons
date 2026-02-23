@@ -17,7 +17,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Vindicator = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -164,8 +164,8 @@ export const Vindicator = (props) => {
           <use href='#Vindicator_segment3_mask' />
         </clipPath>
         <g
-          clip-path='url(#Vindicator_segment1_clip)'
           id='Vindicator_segment1_composite'
+          clip-path='url(#Vindicator_segment1_clip)'
         >
           <Rectangle
             fill={
@@ -176,22 +176,22 @@ export const Vindicator = (props) => {
           />
           <Show when={options.shading}>
             <circle
-              cx='303.7842'
-              cy='346.2335'
+              cx={303.7842}
+              cy={346.2335}
               fill='url(#Vindicator_segment1_shading2)'
-              r='126.152'
+              r={126.152}
             />
             <circle
-              cx='187.3079'
-              cy='300.3215'
+              cx={187.3079}
+              cy={300.3215}
               fill='url(#Vindicator_segment1_shading3)'
-              r='44.165'
+              r={44.165}
             />
             <circle
-              cx='221.1389'
-              cy='162.5986'
+              cx={221.1389}
+              cy={162.5986}
               fill='url(#Vindicator_segment1_shading4)'
-              r='149.5875'
+              r={149.5875}
             />
           </Show>
           <Show when={options.stroke}>
@@ -208,8 +208,8 @@ export const Vindicator = (props) => {
           </Show>
         </g>
         <g
-          clip-path='url(#Vindicator_segment2_clip)'
           id='Vindicator_segment2_composite'
+          clip-path='url(#Vindicator_segment2_clip)'
         >
           <Rectangle
             fill={
@@ -220,16 +220,16 @@ export const Vindicator = (props) => {
           />
           <Show when={options.shading}>
             <circle
-              cx='307.5979'
-              cy='180.7238'
+              cx={307.5979}
+              cy={180.7238}
               fill='url(#Vindicator_segment2_shading2)'
-              r='137.921'
+              r={137.921}
             />
             <circle
-              cx='208.5064'
-              cy='209.3995'
+              cx={208.5064}
+              cy={209.3995}
               fill='url(#Vindicator_segment2_shading3)'
-              r='74.403'
+              r={74.403}
             />
           </Show>
           <Show when={options.stroke}>
@@ -269,10 +269,10 @@ export const Vindicator = (props) => {
           />
           <Show when={options.shading}>
             <circle
-              cx='256'
-              cy='318.4322'
-              r='124.6235'
+              cx={256}
+              cy={318.4322}
               fill='url(#Vindicator_segment3_shading2)'
+              r={124.6235}
             />
           </Show>
         </g>
@@ -290,5 +290,21 @@ export const Vindicator = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <path
+            id='Vindicator_tiny'
+            d='M12,6l-3,2s-1-1-2,0c0-2,1-6,7.5-8,0,0-2.5,3-2.5,6ZM14,20c-1,0-5-2-6-3,0,0,0-1,2-3,0,0-3,1-6,3,2,2,5,3,5,3,1,2-2,2-2,2,0,0,0,8,7,10,0,0-2-2-2-9-3-1-1-3,1-2.5l1-.5Z'
+          />
+        </defs>
+        <path d='M13,14c0,1,3,5,3,5,0,0,3-4,3-5-3-1-4-3-6-3-4,0-13,7-13,7C7,8,16,6,16,6c0,0,9,2,16,12,0,0-9-7-13-7-2,0-3,2-6,3Z' />
+        <use href='#Vindicator_tiny' />
+        <use href='#Vindicator_tiny' transform='translate(32) scale(-1 1)' />
+      </Icon>
+    </Show>
   );
 };

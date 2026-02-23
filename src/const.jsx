@@ -1,30 +1,43 @@
 import { createContext, useContext } from 'solid-js';
 
+import { grey200 } from './scss/const/colors.module.scss';
+
 /** @param {Number} number */
 export const fourDecimals = (number) => Math.round(number * 1e4) / 1e4;
 
-export const iconSize = Object.freeze({
-  default: 512,
-  min: 32,
-  max: 1024,
-  step: 32,
-});
-
 /**
  * @typedef {Object} Options
- * @prop {Color} backgroundColor Preview background color (default = `#ffffff`)
- * @prop {Number} backgroundOpacity Preview background opacity (default = `1`)
- * @prop {Boolean} checkerboard Preview checkerboard (default = `true`)
- * @prop {Boolean} cropmarks Preview cropmarks (default = `true`)
+ * @prop {Color} background Preview background color
+ * @prop {Boolean} checkerboard Preview checkerboard?
+ * @prop {Boolean} cropmarks Preview cropmarks?
  * @prop {[Number, Number]} specialization [0] Profession, [1] Specialization
- * @prop {Boolean} crop Crop viewBox to icon size? (default = `false`)
- * @prop {Boolean} square Force square aspect ratio? (default = `false`)
- * @prop {Boolean} outline Show icon outline? (default = `false`)
- * @prop {Boolean} shading Show icon shading? (default = `false`)
- * @prop {Boolean} stroke Show icon stroke? (default = `false`)
- * @prop {Number} size Icon size (default = `512`)
- * @prop {Boolean} rasterize Rasterize output? (default = `true`)
+ * @prop {Boolean} tiny Tiny icon version?
+ * @prop {Boolean} crop Crop viewBox to icon size?
+ * @prop {Boolean} square Force square aspect ratio?
+ * @prop {Boolean} outline Show icon outline?
+ * @prop {Boolean} shading Show icon shading?
+ * @prop {Boolean} stroke Show icon stroke?
+ * @prop {Number} sizeNormal Current normal icon size
+ * @prop {Number} sizeTiny Current tiny icon size
+ * @prop {Boolean} rasterize Rasterize output?
  */
+
+/** @type {Options} */
+export const defaultOptions = Object.freeze({
+  background: grey200,
+  checkerboard: true,
+  cropmarks: true,
+  specialization: [0, 0],
+  tiny: false,
+  crop: false,
+  square: false,
+  outline: false,
+  shading: false,
+  stroke: false,
+  sizeNormal: 512,
+  sizeTiny: 24,
+  rasterize: true,
+});
 
 /** @type {import('solid-js').Context<Options>} */
 export const OptionsContext = createContext();

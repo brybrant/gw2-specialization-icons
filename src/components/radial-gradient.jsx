@@ -98,8 +98,8 @@ export function RadialGradient(props) {
     <Show when={options.shading}>
       <radialGradient
         id={props.id}
-        cx='0'
-        cy='0'
+        cx={0}
+        cy={0}
         fx={fx()}
         fy={fy()}
         fr={props.fr}

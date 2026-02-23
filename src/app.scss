@@ -19,13 +19,22 @@ main {
 }
 
 .preview {
+  position: relative;
   display: flex;
   flex-grow: 1;
   justify-content: center;
   align-items: center;
   min-width: $preview-size + $gutter * 2;
   padding: $gutter;
-  background: url-encode("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 2' fill='rgba(0,0,0,0.125)'><path d='M0,0H1V2H2V1H0'/></svg>") 50% 50% / 20px 20px;
+}
+
+.preview__checkerboard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url-encode("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 2' opacity='.0625'><path fill='#000' d='M0,0H1V2H2V1H0'/><path fill='#fff' d='M0,1H2V0H1V2H0'/></svg>") 50% 50% / 20px 20px;
 }
 
 .options__container {
@@ -92,48 +101,85 @@ small {
   height: 100%;
 }
 
+$cropmark-size: 8px;
+
 .icon__cropmark {
   position: absolute;
-  width: 8px;
-  height: 8px;
-  border-style: solid;
-  border-color: #fff;
-  mix-blend-mode: exclusion;
+  width: $cropmark-size;
+  height: $cropmark-size;
+  
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    width: $cropmark-size;
+    height: 1px;
+    background: #fff;
+    box-shadow: #000 0 1px, #000 0 -1px;
+  }
+
+  &:after {
+    width: 1px;
+    height: $cropmark-size;
+    box-shadow: #000 1px 0, #000 -1px 0;
+  }
 }
 
 .icon__cropmark--top-left {
-  right: 100%;
-  bottom: 100%;
-  border-width: 0 1px 1px 0;
+  top: -$cropmark-size;
+  left: -$cropmark-size;
+  
+  &:before {
+    top: 100%;
+    left: 0;
+  }
+
+  &:after {
+    top: 0;
+    left: 100%;
+  }
 }
 
 .icon__cropmark--top-right {
-  bottom: 100%;
-  left: 100%;
-  border-width: 0 0 1px 1px;
+  top: -$cropmark-size;
+  right: -$cropmark-size;
+
+  &:before {
+    top: 100%;
+    right: 0;
+  }
+
+  &:after {
+    top: 0;
+    right: 100%;
+  }
 }
 
 .icon__cropmark--bottom-right {
-  top: 100%;
-  left: 100%;
-  border-width: 1px 0 0 1px;
+  right: -$cropmark-size;
+  bottom: -$cropmark-size;
+
+  &:before {
+    right: 0;
+    bottom: 100%;
+  }
+
+  &:after {
+    right: 100%;
+    bottom: 0;
+  }
 }
 
 .icon__cropmark--bottom-left {
-  top: 100%;
-  right: 100%;
-  border-width: 1px 1px 0 0;
-}
+  bottom: -$cropmark-size;
+  left: -$cropmark-size;
 
-// .sr-only {
-//   position: absolute !important;
-//   overflow: hidden !important;
-//   clip: rect(0, 0, 0, 0) !important;
-//   width: 1px !important;
-//   height: 1px !important;
-//   margin: -1px !important;
-//   padding: 0 !important;
-//   border: 0 !important;
-//   font-size: 0 !important;
-//   line-height: 0 !important;
-// }
+  &:before {
+    bottom: 100%;
+    left: 0;
+  }
+
+  &:after {
+    bottom: 0;
+    left: 100%;
+  }
+}

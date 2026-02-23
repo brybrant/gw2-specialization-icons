@@ -17,7 +17,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Spellbreaker = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -165,7 +165,7 @@ export const Spellbreaker = (props) => {
           id='Spellbreaker_segment1_stroke2'
           d='M119.4336,512c50.2008-93.2337,78.6313-140.4826,127.9964-177.35C175.2983,252.7203,92.3426,175.0822,0,105.7844L256,0l256,105.7844c-92.3426,69.2978-175.2983,146.936-247.43,228.8657,49.3651,36.8674,77.7956,84.1163,127.9964,177.35'
         />
-        <Rectangle id='Spellbreaker_segment1_shading_mask' height='276.5457' />
+        <Rectangle id='Spellbreaker_segment1_shading_mask' height={276.5457} />
         <path
           id='Spellbreaker_segment2'
           d='M212.74,419.48c-71.74-14.87-125.65-78.42-125.65-154.56,0-50.9959,24.3056-97.4267,63.77-126.77,1.5724-11.4703,1.6209-23.2899-.06-35.22,13.6785,18.2841,25.9657,37.9762,36.48,58.48-42.4301,24.66-70.95,70.61-70.95,123.23,0,62.56,40.33,115.7,96.41,134.84Z'
@@ -190,8 +190,8 @@ export const Spellbreaker = (props) => {
           <use href='#Spellbreaker_segment3' />
         </clipPath>
         <g
-          clip-path='url(#Spellbreaker_segment2_clip)'
           id='Spellbreaker_segment4'
+          clip-path='url(#Spellbreaker_segment2_clip)'
         >
           <Rectangle
             fill={
@@ -203,9 +203,9 @@ export const Spellbreaker = (props) => {
           <Show when={options.shading}>
             <circle
               fill='url(#Spellbreaker_segment2_shading2)'
-              cx='251.5706'
-              cy='274.6129'
-              r='149.944'
+              cx={251.5706}
+              cy={274.6129}
+              r={149.944}
             />
           </Show>
           <Show when={options.stroke}>
@@ -222,8 +222,8 @@ export const Spellbreaker = (props) => {
           </Show>
         </g>
         <g
-          clip-path='url(#Spellbreaker_segment3_clip)'
           id='Spellbreaker_segment5'
+          clip-path='url(#Spellbreaker_segment3_clip)'
         >
           <Rectangle
             fill={
@@ -270,47 +270,40 @@ export const Spellbreaker = (props) => {
           />
           <Show when={options.shading}>
             <Rectangle
-              width='256'
               fill='url(#Spellbreaker_segment1_shading2)'
+              width={256}
             />
             <Rectangle
-              height='360'
               fill='url(#Spellbreaker_segment1_shading3)'
+              height={360}
             />
             <Rectangle
-              width='256'
-              height='360'
               fill='url(#Spellbreaker_segment1_shading4)'
+              width={256}
+              height={360}
             />
             <g clip-path='url(#Spellbreaker_segment1_shading_clip)'>
               <Rectangle fill='url(#Spellbreaker_segment1_shading5)' />
               <Rectangle
-                width='256'
                 fill='url(#Spellbreaker_segment1_shading6)'
+                width={256}
               />
             </g>
             <Rectangle
-              y='334.65'
-              height='35.1515'
               fill='url(#Spellbreaker_segment1_shading7)'
+              y={334.65}
+              height={35.1515}
             />
           </Show>
           <Show when={options.stroke}>
-            <use
-              {...strokeWidth.x05}
-              href='#Spellbreaker_segment1_stroke2'
-              stroke={props.palette.Highlight}
-            />
-            <use
-              {...strokeWidth.x1}
-              href='#Spellbreaker_segment1_stroke1'
-              stroke={props.palette.Highlight}
-            />
-            <use
-              {...strokeWidth.x05}
-              href='#Spellbreaker_segment1_stroke1'
-              stroke={props.palette.Dark}
-            />
+            <g {...strokeWidth.x05} stroke={props.palette.Highlight}>
+              <use href='#Spellbreaker_segment1_stroke2' />
+              <use {...strokeWidth.x1} href='#Spellbreaker_segment1_stroke1' />
+              <use
+                href='#Spellbreaker_segment1_stroke1'
+                stroke={props.palette.Dark}
+              />
+            </g>
           </Show>
         </g>
       </g>
@@ -321,5 +314,29 @@ export const Spellbreaker = (props) => {
         <use href='#Spellbreaker_segment5' />
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <path
+            id='Spellbreaker_tiny_mask'
+            d='M4 0 11 11 13 16 7 0 31 22 0 32Z'
+          />
+          <clipPath id='Spellbreaker_tiny_clip'>
+            <use href='#Spellbreaker_tiny_mask' />
+          </clipPath>
+          <path
+            id='Spellbreaker_tiny'
+            clip-path='url(#Spellbreaker_tiny_clip)'
+            d='M11,9c-8,4-8,14-1,18.5C3,25-1,15,7,8c1-1,0-4,0-4,0,0,2,2,3,0,0,0,1,1,1,5Z'
+          />
+        </defs>
+        <path d='M15 0 10.5 18 18.5 24.5 15 32 11.5 24.5 19.5 18Z' />
+        <use href='#Spellbreaker_tiny' />
+        <use href='#Spellbreaker_tiny' transform='translate(30) scale(-1 1)' />
+      </Icon>
+    </Show>
   );
 };

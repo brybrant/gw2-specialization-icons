@@ -6,7 +6,7 @@ import { Rectangle } from '../../components/rectangle';
 
 import { RadialGradient } from '../../components/radial-gradient';
 
-import { outlineStyle, strokeWidth, useOptions } from '../../const';
+import { ellipse, outlineStyle, strokeWidth, useOptions } from '../../const';
 
 /**
  * @param {Object} props
@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Harbinger = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -71,5 +71,28 @@ export const Harbinger = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <Rectangle
+            id='Harbinger_tiny_mask'
+            d={ellipse(15, 19, 9)}
+            width={32}
+            height={32}
+          />
+          <clipPath id='Harbinger_tiny_clip'>
+            <use href='#Harbinger_tiny_mask' />
+          </clipPath>
+        </defs>
+        <path
+          clip-path='url(#Harbinger_tiny_clip)'
+          d='M22,8c-2,1-4-1-2-3-4,1-5-3-3-5-4,0-6,3-7,5,2,2,0,4-2,3,0,0-5,8-5,13s12,11,12,11c0,0,12-6,12-11s-5-13-5-13ZM13.5,13v-4h-2v-3h7v3h-2v4h-3Z'
+        />
+        <path d='M15,26s3-3,3-7-3-7-3-7c0,0-3,3-3,7s3,7,3,7Z' />
+      </Icon>
+    </Show>
   );
 };

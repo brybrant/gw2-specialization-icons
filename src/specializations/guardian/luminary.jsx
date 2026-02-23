@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Luminary = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -25,7 +25,7 @@ export const Luminary = (props) => {
     >
       <defs>
         <RadialGradient
-          id='Luminary_shading1'
+          id='Luminary_right_shading'
           viewBox={[0, 0, 512, 512]}
           cy={102.9983}
           fy={57.8039}
@@ -37,7 +37,7 @@ export const Luminary = (props) => {
           ]}
         />
         <RadialGradient
-          id='Luminary_shading2'
+          id='Luminary_left_shading'
           viewBox={[0, 0, 256, 512]}
           cx={256}
           cy={102.9983}
@@ -66,11 +66,13 @@ export const Luminary = (props) => {
       <g clip-path='url(#Luminary_clip)'>
         <Rectangle
           fill={
-            options.shading ? 'url(#Luminary_shading1)' : props.palette.Flat
+            options.shading
+              ? 'url(#Luminary_right_shading)'
+              : props.palette.Flat
           }
         />
         <Show when={options.shading}>
-          <Rectangle width='256' fill='url(#Luminary_shading2)' />
+          <Rectangle fill='url(#Luminary_left_shading)' width={256} />
         </Show>
         <Show when={options.stroke}>
           <use
@@ -86,5 +88,25 @@ export const Luminary = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <defs>
+          <path
+            id='Luminary_tiny_mask'
+            d='M24,13l8-4V0h-9v5c0,3-4,3-4,0V0h-8v5c0,3-4,3-4,0V0H0v10l6,3c4,2,2,6,0,5L0,15v17h32V14l-8,4c-2,1-4-3,0-5Z'
+          />
+          <clipPath id='Luminary_tiny_clip'>
+            <use href='#Luminary_tiny_mask' />
+          </clipPath>
+        </defs>
+        <path
+          clip-path='url(#Luminary_tiny_clip)'
+          d='M15,32l-9-6c-3-2-3-4-3-4L2,4,15,0l13,4-1,18s0,2-3,4l-9,6Z'
+        />
+      </Icon>
+    </Show>
   );
 };

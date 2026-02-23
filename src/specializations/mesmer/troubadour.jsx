@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Troubadour = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -89,5 +89,13 @@ export const Troubadour = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <path d='M25,0l-2,2,1,1-1,1-1-1-1,1-1,1s1,1,1,3-3,4-5,5-7-2-10,1l-3,3c-4,4-3.5,9.5-.5,12.5s8.5,3.5,12.5-.5l3-3c3-3,0-8,1-10s3-5,5-5,3,1,3,1l2-2-1-1,1-1,1,1,2-2L25,0ZM5,22l5-5c1-1,2,0,1,1l-5,5c-1,1-2,0-1-1ZM6,25l7-7h1v1l-7,7h-1v-1ZM15,22l-5,5c-1,1-2,0-1-1l5-5c1-1,2,0,1,1Z' />
+      </Icon>
+    </Show>
   );
 };

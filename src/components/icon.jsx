@@ -2,12 +2,15 @@ import { fourDecimals, useOptions } from '../const';
 
 /**
  * @param {Object} props
+ * @param {String} [props.fill] SVG descendants fill color
  * @param {[Number, Number, Number, Number]} props.viewBox
  */
 export function Icon(props) {
   const options = useOptions();
 
   const viewbox = () => {
+    if (options.tiny === true) return [0, 0, 32, 32];
+
     if (options.crop === false) return [0, 0, 512, 512];
 
     if (options.square === false) return props.viewBox;
@@ -27,9 +30,9 @@ export function Icon(props) {
 
   return (
     <svg
-      fill='none'
-      stroke-linecap={options.stroke ? 'round' : null}
-      stroke-linejoin={options.stroke ? 'round' : null}
+      fill={props.fill ?? 'none'}
+      stroke-linecap={!options.tiny && options.stroke ? 'round' : null}
+      stroke-linejoin={!options.tiny && options.stroke ? 'round' : null}
       viewBox={viewbox().join(' ')}
       xmlns='http://www.w3.org/2000/svg'
     >

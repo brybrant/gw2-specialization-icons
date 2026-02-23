@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Reaper = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -83,5 +83,13 @@ export const Reaper = (props) => {
         />
       </Show>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <path d='M16,32l-9-9c4,0,9,5,9,9ZM17,8c7,5,9,12,9,12-4,3-8,8-8,12,6-6,12-8,12-8-4,0-8,2-8,2l6-6c-1-3-6-15-15-20,0,0-9,17-9,24,0,0,2-4,13-16ZM12,17c0,2,4,2,4,0,0,0-1,0-2-1-1,1-2,1-2,1ZM22,17s-1,0-2-1c-1,1-2,1-2,1,0,2,4,2,4,0Z' />
+      </Icon>
+    </Show>
   );
 };

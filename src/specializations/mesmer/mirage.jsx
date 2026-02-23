@@ -15,7 +15,7 @@ import { outlineStyle, strokeWidth, useOptions } from '../../const';
 export const Mirage = (props) => {
   const options = useOptions();
 
-  return (
+  const Normal = (
     <Icon
       viewBox={
         options.outline
@@ -108,5 +108,13 @@ export const Mirage = (props) => {
         </Show>
       </g>
     </Icon>
+  );
+
+  return (
+    <Show when={options.tiny} fallback={<Normal />}>
+      <Icon fill={props.palette.Flat}>
+        <path d='M30,16c-7-2-9.5-5-9.5-5,0,0,.5-1,3.5-2,0,0-6-2-9-9-3,7-9,9-9,9,3,1,3.5,2,3.5,2,0,0-2.5,3-9.5,5,7,2,9.5,5,9.5,5,0,0-.5,1-3.5,2,0,0,6,2,9,9,3-7,9-9,9-9-3-1-3.5-2-3.5-2,0,0,2.5-3,9.5-5ZM15,22.5c-3-3.5-6-5.5-8.5-6.5,2.5-1,5.5-3,8.5-6.5,3,3.5,6,5.5,8.5,6.5-2.5,1-5.5,3-8.5,6.5Z' />
+      </Icon>
+    </Show>
   );
 };
