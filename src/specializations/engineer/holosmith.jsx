@@ -8,17 +8,17 @@ import { RadialGradient } from '../../components/radial-gradient';
 
 import { ellipse, outlineStyle, strokeWidth, useOptions } from '../../const';
 
-/** @param {Number} angle */
+/** @param {number} angle */
 const rotate = (angle) => `rotate(${angle} 256 284.1362)`;
 
 /**
- * @param {Object} props
+ * @param {object} props
  * @param {import('../../palettes').Palette} props.palette
  */
 export const Holosmith = (props) => {
   const options = useOptions();
 
-  const Normal = (
+  const Normal = () => (
     <Icon
       viewBox={
         options.outline

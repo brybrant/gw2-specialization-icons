@@ -12,12 +12,12 @@ const pathDefaults = {
 
 /**
  * Create a rectangular path, optionally intersected with another path (`d`)
- * @param {Object} props
- * @param {String} [props.d] Path definition to be intersected with Rectangle.
- * @param {Number} [props.height] Rectangle height *(default = `512`)*
- * @param {Number} [props.width] Rectangle width *(default = `512`)*
- * @param {Number} [props.x] Rectangle x position *(default = `0`)*
- * @param {Number} [props.y] Rectangle y position *(default = `0`)*
+ * @param {object} props
+ * @param {string} [props.d] Path definition to be intersected with Rectangle.
+ * @param {number} [props.height] Rectangle height *(default = `512`)*
+ * @param {number} [props.width] Rectangle width *(default = `512`)*
+ * @param {number} [props.x] Rectangle x position *(default = `0`)*
+ * @param {number} [props.y] Rectangle y position *(default = `0`)*
  */
 export function Rectangle(props) {
   const [definitions, attributes] = splitProps(props, pathDefinitions);

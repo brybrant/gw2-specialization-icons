@@ -1,9 +1,9 @@
 import { fourDecimals, useOptions } from '../const';
 
 /**
- * @param {Object} props
- * @param {String} [props.fill] SVG descendants fill color
- * @param {[Number, Number, Number, Number]} props.viewBox
+ * @param {object} props
+ * @param {string} [props.fill] SVG descendants fill color
+ * @param {[number, number, number, number]} props.viewBox
  */
 export function Icon(props) {
   const options = useOptions();

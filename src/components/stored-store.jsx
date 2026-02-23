@@ -4,7 +4,7 @@ import { createStore } from 'solid-js/store';
 /**
  * Create a store whose value is set from & stored in localStorage
  * @template T
- * @param {String} key - Key for localStorage retrieval
+ * @param {string} key - Key for localStorage retrieval
  * @param {T} defaultValue - Default store value *(if no localStorage value)*
  * @returns {[T, import('solid-js/store').SetStoreFunction<T>]}
  */

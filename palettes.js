@@ -15,8 +15,8 @@ function okhsvToHex(h = 0, s = 0, v = 0) {
 }
 
 const typedefs = `/**
- * @typedef {String} Color HEX code
- * @typedef {Object} Palette
+ * @typedef {string} Color HEX code
+ * @typedef {object} Palette
  * @prop {Color} Highlight - Icon highlight color (shading & stroke)
  * @prop {Color} Neutral - Icon neutral color (shading)
  * @prop {Color} Midtone - Icon midtone color (shading)

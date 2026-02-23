@@ -9,7 +9,7 @@ function encodeSVG(svg) {
 
   let uid = 0;
 
-  /** @type {[String, String][]} */
+  /** @type {[string, string][]} */
   const ids = [];
 
   for (const match of matches) {
@@ -50,9 +50,9 @@ function encodeSVG(svg) {
 }
 
 /**
- * @param {Object} props
- * @param {String} props.name - Name of specialization
- * @param {Number} props.size - Size of the icon
+ * @param {object} props
+ * @param {string} props.name - Name of specialization
+ * @param {number} props.size - Size of the icon
  * @param {SVGSVGElement} props.svg - Icon element (ref) to be downloaded
  */
 export function Download(props) {

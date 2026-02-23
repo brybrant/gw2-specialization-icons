@@ -2,24 +2,24 @@ import { createContext, useContext } from 'solid-js';
 
 import { grey200 } from './scss/const/colors.module.scss';
 
-/** @param {Number} number */
+/** @param {number} number */
 export const fourDecimals = (number) => Math.round(number * 1e4) / 1e4;
 
 /**
- * @typedef {Object} Options
+ * @typedef {object} Options
  * @prop {Color} background Preview background color
- * @prop {Boolean} checkerboard Preview checkerboard?
- * @prop {Boolean} cropmarks Preview cropmarks?
- * @prop {[Number, Number]} specialization [0] Profession, [1] Specialization
- * @prop {Boolean} tiny Tiny icon version?
- * @prop {Boolean} crop Crop viewBox to icon size?
- * @prop {Boolean} square Force square aspect ratio?
- * @prop {Boolean} outline Show icon outline?
- * @prop {Boolean} shading Show icon shading?
- * @prop {Boolean} stroke Show icon stroke?
- * @prop {Number} sizeNormal Current normal icon size
- * @prop {Number} sizeTiny Current tiny icon size
- * @prop {Boolean} rasterize Rasterize output?
+ * @prop {boolean} checkerboard Preview checkerboard?
+ * @prop {boolean} cropmarks Preview cropmarks?
+ * @prop {[number, number]} specialization [0] Profession, [1] Specialization
+ * @prop {boolean} tiny Tiny icon version?
+ * @prop {boolean} crop Crop viewBox to icon size?
+ * @prop {boolean} square Force square aspect ratio?
+ * @prop {boolean} outline Show icon outline?
+ * @prop {boolean} shading Show icon shading?
+ * @prop {boolean} stroke Show icon stroke?
+ * @prop {number} sizeNormal Current normal icon size
+ * @prop {number} sizeTiny Current tiny icon size
+ * @prop {boolean} rasterize Rasterize output?
  */
 
 /** @type {Options} */
@@ -45,10 +45,10 @@ export const OptionsContext = createContext();
 export const useOptions = () => useContext(OptionsContext);
 
 /**
- * @typedef {Object} Stop
- * @prop {Number} [offset] Gradient stop offset (float between 0 - 1)
+ * @typedef {object} Stop
+ * @prop {number} [offset] Gradient stop offset (float between 0 - 1)
  * @prop {Color} color Gradient stop-color
- * @prop {Number} [opacity] Gradient stop-opacity (float between 0 - 1)
+ * @prop {number} [opacity] Gradient stop-opacity (float between 0 - 1)
  */
 
 /** 0.01745329251994329576923690768489 */
@@ -71,10 +71,10 @@ export const strokeWidth = {
 
 /**
  * Draw an ellipse using path commands
- * @param {Number} cx Center X
- * @param {Number} cy Center Y
- * @param {Number} rx Radius X
- * @param {Number} [ry] Radius Y *(default = `rx`)*
+ * @param {number} cx Center X
+ * @param {number} cy Center Y
+ * @param {number} rx Radius X
+ * @param {number} [ry] Radius Y *(default = `rx`)*
  */
 export function ellipse(cx, cy, rx, ry = rx) {
   const dx = rx * 2;

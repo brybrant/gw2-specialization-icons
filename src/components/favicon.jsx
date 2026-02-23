@@ -7,7 +7,7 @@ import { RadialGradient } from './radial-gradient';
 import { outlineStyle, useOptions } from '../const';
 
 /**
- * @param {Object} props
+ * @param {object} props
  * @param {import('../palettes').Palette} props.palette
  */
 export const Favicon = (props) => {

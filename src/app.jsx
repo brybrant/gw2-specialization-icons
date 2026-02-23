@@ -34,8 +34,8 @@ import './app.scss';
  */
 
 /**
- * @typedef {Object} Specialization
- * @prop {String} name
+ * @typedef {object} Specialization
+ * @prop {string} name
  * @prop {import('solid-js').JSXElement} component
  * @prop {Palette} palette
  * @prop {import('solid-js/store').SetStoreFunction<Palette>} setPalette
@@ -210,9 +210,9 @@ const dispose = render(() => {
       Math.min(viewBox.width, viewBox.height) /
       Math.max(viewBox.width, viewBox.height);
 
-    /** @type {Number} */
+    /** @type {number} */
     let width;
-    /** @type {Number} */
+    /** @type {number} */
     let height;
 
     if (!options.crop || options.square || viewBox.width === viewBox.height) {
@@ -376,7 +376,7 @@ const dispose = render(() => {
                 ]}
                 value={palettePreset()}
                 callback={
-                  /** @param {(keyof palettes)|''} palette */
+                  /** @param {(keyof palettes)|''} palette Selected palette */
                   (palette) => {
                     setPalettePreset(palette);
 

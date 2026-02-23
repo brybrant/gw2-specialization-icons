@@ -9,12 +9,12 @@ import { RadialGradient } from '../../components/radial-gradient';
 import { outlineStyle, strokeWidth, useOptions } from '../../const';
 
 /**
- * @param {Object} props
+ * @param {object} props
  * @param {import('../../palettes').Palette} props.palette
- * @param {Number} [props.rotation]
- * @param {String} props.shading1
- * @param {String} props.shading2
- * @param {String} props.shading3
+ * @param {number} [props.rotation]
+ * @param {string} props.shading1
+ * @param {string} props.shading2
+ * @param {string} props.shading3
  */
 const AmalgamSwirl = (props) => {
   const options = useOptions();
@@ -52,13 +52,13 @@ const AmalgamSwirl = (props) => {
 };
 
 /**
- * @param {Object} props
+ * @param {object} props
  * @param {import('../../palettes').Palette} props.palette
  */
 export const Amalgam = (props) => {
   const options = useOptions();
 
-  const Normal = (
+  const Normal = () => (
     <Icon
       viewBox={
         options.outline

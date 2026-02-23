@@ -3,23 +3,23 @@ import { createMemo, createUniqueId, For, Show } from 'solid-js';
 /** @template T */
 
 /**
- * @typedef {Object} Option
- * @prop {String} label Option label
+ * @typedef {object} Option
+ * @prop {string} label Option label
  * @prop {T} value Option value
  */
 
 /**
  * @callback RangeCallback
- * @param {Number} value
+ * @param {number} value
  */
 
 /**
- * @param {Object} props
- * @param {String} props.label Range label
- * @param {Number} props.min Range minimum
- * @param {Number} props.max Range maximum
- * @param {Number|'any'} [props.step] Range granularity (step)
- * @param {Number} props.value Range value
+ * @param {object} props
+ * @param {string} props.label Range label
+ * @param {number} props.min Range minimum
+ * @param {number} props.max Range maximum
+ * @param {number|'any'} [props.step] Range granularity (step)
+ * @param {number} props.value Range value
  * @param {Option[]} [props.list] Range suggested values
  * @param {RangeCallback} props.callback Range callback
  */

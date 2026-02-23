@@ -3,8 +3,8 @@ import { createUniqueId, For } from 'solid-js';
 /** @template T */
 
 /**
- * @typedef {Object} Option
- * @prop {String} label Option label
+ * @typedef {object} Option
+ * @prop {string} label Option label
  * @prop {T} value Option value
  */
 
@@ -14,7 +14,7 @@ import { createUniqueId, For } from 'solid-js';
  */
 
 /**
- * @param {Object} props
+ * @param {object} props
  * @param {Option[]} props.options Radio options
  * @param {T} props.value Radio value
  * @param {RadioCallback} props.callback Radio callback

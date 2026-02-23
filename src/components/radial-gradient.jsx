@@ -5,18 +5,18 @@ import { fourDecimals, radian, useOptions } from '../const';
 /**
  * Create an SVG `<radialGradient>` for a specific `objectBoundingBox`.
  * This converts absolute coordinates to relative coordinates.
- * @param {Object} props
- * @param {String} props.id Unique ID
- * @param {[Number, Number, Number, Number]} props.viewBox objectBoundingBox
- * @param {Number} [props.cx] Gradient X center *(default = `viewBox` center X)*
- * @param {Number} [props.cy] Gradient Y center *(default = `viewBox` center Y)*
- * @param {Number} [props.fx] Gradient X focus center *(defaults to `cx`)*
- * @param {Number} [props.fy] Gradient Y focus center *(defaults to `cy`)*
- * @param {Number} [props.fr] Gradient focus radius *(defaults to `0`)*
+ * @param {object} props
+ * @param {string} props.id Unique ID
+ * @param {[number, number, number, number]} props.viewBox objectBoundingBox
+ * @param {number} [props.cx] Gradient X center *(default = `viewBox` center X)*
+ * @param {number} [props.cy] Gradient Y center *(default = `viewBox` center Y)*
+ * @param {number} [props.fx] Gradient X focus center *(defaults to `cx`)*
+ * @param {number} [props.fy] Gradient Y focus center *(defaults to `cy`)*
+ * @param {number} [props.fr] Gradient focus radius *(defaults to `0`)*
  * @param {'reflect'|'repeat'} [props.spreadMethod] Default = "pad"
- * @param {Number} [props.dx] Gradient X diameter *(default = `viewBox` width)*
- * @param {Number} [props.dy] Gradient Y diameter *(default = `viewBox` height)*
- * @param {Number} [props.rotate] Gradient rotation (in degrees, not radians)
+ * @param {number} [props.dx] Gradient X diameter *(default = `viewBox` width)*
+ * @param {number} [props.dy] Gradient Y diameter *(default = `viewBox` height)*
+ * @param {number} [props.rotate] Gradient rotation (in degrees, not radians)
  * @param {import('../const.js').Stop[]} props.stops Gradient color stops
  */
 export function RadialGradient(props) {

@@ -3,22 +3,22 @@ import { createMemo, createEffect, createUniqueId, For } from 'solid-js';
 /** @template T */
 
 /**
- * @typedef {Object} Option
- * @prop {String} label Option label
+ * @typedef {object} Option
+ * @prop {string} label Option label
  * @prop {T} value Option value
  */
 
 /**
- * @typedef {Object} Optgroup
- * @prop {String} label Optgroup label
+ * @typedef {object} Optgroup
+ * @prop {string} label Optgroup label
  * @prop {Option[]} options Optgroup options
  */
 
 /**
- * @param {Object} props
- * @param {String} props.label
- * @param {String<T>} props.value
- * @param {Boolean} props.selected
+ * @param {object} props
+ * @param {string} props.label
+ * @param {string<T>} props.value
+ * @param {boolean} props.selected
  */
 const Option = (props) => (
   <option value={props.value} bool:selected={props.selected}>
@@ -32,8 +32,8 @@ const Option = (props) => (
  */
 
 /**
- * @param {Object} props
- * @param {String} props.label Select label
+ * @param {object} props
+ * @param {string} props.label Select label
  * @param {Array.<Option|Optgroup>} props.options Select options
  * @param {T} props.value Select value
  * @param {SelectCallback} props.callback Select callback

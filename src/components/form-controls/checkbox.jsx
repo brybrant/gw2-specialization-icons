@@ -2,14 +2,14 @@ import { createUniqueId } from 'solid-js';
 
 /**
  * @callback CheckboxCallback
- * @param {Boolean} value
+ * @param {boolean} value
  */
 
 /**
- * @param {Object} props
- * @param {Boolean} [props.disabled] Checkbox disabled status
- * @param {String} props.label Checkbox label
- * @param {Boolean} props.value Checkbox value
+ * @param {object} props
+ * @param {boolean} [props.disabled] Checkbox disabled status
+ * @param {string} props.label Checkbox label
+ * @param {boolean} props.value Checkbox value
  * @param {CheckboxCallback} props.callback Checkbox callback
  */
 export function Checkbox(props) {

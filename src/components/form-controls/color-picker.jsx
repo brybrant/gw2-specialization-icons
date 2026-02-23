@@ -8,9 +8,9 @@ import { createUniqueId, Show } from 'solid-js';
  */
 
 /**
- * @param {Object} props
+ * @param {object} props
  * @param {Color} [props.default] - Color default
- * @param {String} props.label - Color label
+ * @param {string} props.label - Color label
  * @param {Color} props.value - Color value
  * @param {ColorCallback} props.callback - Color callback
  */

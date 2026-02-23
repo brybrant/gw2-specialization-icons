@@ -5,13 +5,13 @@ import { degree, fourDecimals, useOptions } from '../const';
 /**
  * Create an SVG `<linearGradient>` for a specific `objectBoundingBox`.
  * This converts absolute coordinates to relative coordinates.
- * @param {Object} props
- * @param {String} props.id Unique ID
- * @param {[Number, Number, Number, Number]} props.viewBox objectBoundingBox
- * @param {Number} [props.x1] Gradient X start *(default = `0%`)*
- * @param {Number} [props.y1] Gradient Y start *(default = `0%`)*
- * @param {Number} [props.x2] Gradient X end *(default = `100%`)*
- * @param {Number} [props.y2] Gradient Y end *(default = `0%`)*
+ * @param {object} props
+ * @param {string} props.id Unique ID
+ * @param {[number, number, number, number]} props.viewBox objectBoundingBox
+ * @param {number} [props.x1] Gradient X start *(default = `0%`)*
+ * @param {number} [props.y1] Gradient Y start *(default = `0%`)*
+ * @param {number} [props.x2] Gradient X end *(default = `100%`)*
+ * @param {number} [props.y2] Gradient Y end *(default = `0%`)*
  * @param {'reflect'|'repeat'} [props.spreadMethod] Default = "pad"
  * @param {import('../const.js').Stop[]} props.stops Gradient color stops
  */

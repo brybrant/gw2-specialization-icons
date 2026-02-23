@@ -9,13 +9,13 @@ import { LinearGradient } from '../../components/linear-gradient';
 import { outlineStyle, strokeWidth, useOptions } from '../../const';
 
 /**
- * @param {Object} props
+ * @param {object} props
  * @param {import('../../palettes').Palette} props.palette
  */
 export const Luminary2026 = (props) => {
   const options = useOptions();
 
-  const Normal = (
+  const Normal = () => (
     <Icon
       viewBox={
         options.outline

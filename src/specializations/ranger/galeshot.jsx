@@ -14,13 +14,13 @@ const galeshotRectangle = {
 };
 
 /**
- * @param {Object} props
+ * @param {object} props
  * @param {import('../../palettes').Palette} props.palette
  */
 export const Galeshot = (props) => {
   const options = useOptions();
 
-  const Normal = (
+  const Normal = () => (
     <Icon
       viewBox={
         options.outline
