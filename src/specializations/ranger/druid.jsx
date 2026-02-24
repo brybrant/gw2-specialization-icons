@@ -137,10 +137,10 @@ export const Druid = (props) => {
           />
           <circle cx={7} cy={16} r={10} />
         </g>
-        <path
-          clip-path='url(#Druid_tiny_clip2)'
-          d='M0 16 28 4 16 32 4 4 32 16 4 28 16 0 28 28Z'
-        />
+        <g clip-path='url(#Druid_tiny_clip2)'>
+          <path d='M4.5 4.5 9 16 4.5 27.5 16 23 27.5 27.5 23 16 27.5 4.5 16 9Z' />
+          <path d='M11 11 15 2 16 0 17 2 21 11 30 15 32 16 30 17 21 21 17 30 16 32 15 30 11 21 2 17 0 16 2 15Z' />
+        </g>
       </Icon>
     </Show>
   );
