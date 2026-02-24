@@ -12,4 +12,10 @@ You can also change the color(s) of the icons, selecting from a list of presets 
 
 When you are finished customizing the icon appearance, you can output the icon as a png (rasterized) or svg.
 
+## New *Tiny* Icons!
+
+For every specialization icon, I have created a corresponding **tiny** version that is designed to be more distinguishable at *very* small sizes, such as inline with text.
+
+These icons will have the best clarity at maximum contrast (white icon on black background or vice versa)
+
 Enjoy!
