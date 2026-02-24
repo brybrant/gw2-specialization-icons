@@ -88,7 +88,19 @@ export const Reaper = (props) => {
   return (
     <Show when={options.tiny} fallback={<Normal />}>
       <Icon fill={props.palette.Flat}>
-        <path d='M16,32l-9-9c4,0,9,5,9,9ZM17,8c7,5,9,12,9,12-4,3-8,8-8,12,6-6,12-8,12-8-4,0-8,2-8,2l6-6c-1-3-6-15-15-20,0,0-9,17-9,24,0,0,2-4,13-16ZM12,17c0,2,4,2,4,0,0,0-1,0-2-1-1,1-2,1-2,1ZM22,17s-1,0-2-1c-1,1-2,1-2,1,0,2,4,2,4,0Z' />
+        <defs>
+          <path
+            id='Reaper_mask'
+            d='M4,24s5-12,9-15L1,32h31s0-32,0-32H0v32l4-8Z'
+          />
+          <clipPath id='Reaper_clip'>
+            <use href='#Reaper_mask' />
+          </clipPath>
+        </defs>
+        <path
+          clip-path='url(#Reaper_clip)'
+          d='M16,32l-9-9c4,0,9,5,9,9ZM17,8c7,5,9,12,9,12-4,3-8,8-8,12,6-6,12-8,12-8-4,0-8,2-8,2l6-6c-1-3-6-15-15-20,0,0-9,17-9,24,0,0,7-9,13-16ZM12,17c0,1,2,1,2,1,0,0,2,0,2-1l-2-1-2,1ZM22,17l-2-1-2,1c0,1,2,1,2,1,0,0,2,0,2-1Z'
+        />
       </Icon>
     </Show>
   );
