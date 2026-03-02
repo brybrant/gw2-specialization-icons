@@ -3,7 +3,7 @@
   "author": "brybrant",
   "license": "GPL-3.0-only",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "scripts": {
     "predev": "node ./palettes.js",
@@ -26,11 +26,11 @@
   },
   "devDependencies": {
     "@brybrant/configs": "github:brybrant/configs",
-    "@brybrant/fade-scroll": "^1.1.0",
+    "@brybrant/fade-scroll": "^1.1.1",
     "@brybrant/svg-icons": "github:brybrant/svg-icons",
     "culori": "^4.0.2",
     "eslint-plugin-solid": "^0.14.5",
-    "globals": "^17.3.0",
+    "globals": "^17.4.0",
     "sass-embedded": "^1.97.3",
     "vite": "^7.3.1",
     "vite-plugin-eslint2": "^5.0.5",
