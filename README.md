@@ -38,9 +38,9 @@ The silhouettes are faithful to the official in-game icons. I have also included
 You can choose any combination of the style options and you can even change the color(s) of the icons by selecting from a list of presets or defining your own color scheme by using the color pickers:
 
 <p align="center">
-  <img src='./public/custom-color-example.png' alt='Custom color example' />
+  <img src='./public/custom-color-example.png' alt='Custom color example' /><br>
+  <sup>Demonstration of a custom color palette applied to the Amalgam specialization icon</sup>
 </p>
-<p align="center"><sup>Demonstration of a custom color palette applied to the Amalgam specialization icon</sup></p>
 
 When you are finished customizing the icon appearance, you can output the icon as a `.png` (rasterized up to 1024×1024 pixels in size) or `.svg` (vector).
 
@@ -49,9 +49,9 @@ When you are finished customizing the icon appearance, you can output the icon a
 For each specialization icon, I have created a corresponding ***tiny*** version. These tiny icons are designed with some exaggerated proportions and extra negative space to improve visibility and make them easier to distinguish at *very* small sizes, such as inline with text.
 
 <p align="center">
-  <img src='./public/tiny-example.png' alt='Tiny icon example' />
+  <img src='./public/tiny-example.png' alt='Tiny icon example' /><br>
+  <sup>Tiny icons at 16×16 pixels in size</sup>
 </p>
-<p align="center"><sup>Tiny icons at 16×16 pixels in size</sup></p>
 
 These icons have optimal clarity at maximum contrast *(white icon on black background or vice versa)*
 
