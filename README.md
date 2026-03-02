@@ -57,7 +57,7 @@ These icons have optimal clarity at maximum contrast *(white icon on black backg
 
 You can use these icons with your arcdps configuration by doing the following:
 
-1. Create a folder called `icons` within your arcdps addon configuration folder:
+1. Create a folder called `icons` within your arcdps addon configuration folder:\
   `C:\Program Files\Guild Wars 2\addons\arcdps\icons`
 
 2. Inside that folder, add the icons with the following specific file names:
