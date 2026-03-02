@@ -330,7 +330,7 @@ export const Spellbreaker = (props) => {
           <path
             id='Spellbreaker_tiny'
             clip-path='url(#Spellbreaker_tiny_clip)'
-            d='M11,9c-8,4-8,14-1,18.5C3,25-1,15,7,8c1-1,0-4,0-4,0,0,2,2,3,0,0,0,1,1,1,5Z'
+            d='M11,9c-8,4-8,13-1,18v.5C3,25-1,15,7,8c1-1,0-4,0-4,0,0,2,2,3,0,0,0,1,1,1,5Z'
           />
         </defs>
         <path d='M15 0 10.5 18 18.5 24.5 15 32 11.5 24.5 19.5 18Z' />
