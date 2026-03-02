@@ -5,7 +5,7 @@ import { eslintConfig } from '@brybrant/configs';
 
 export default eslintConfig({
   files: ['**/*.jsx'],
-  ...eslintPluginSolid,
+  plugins: eslintPluginSolid.plugins,
   languageOptions: {
     globals: {
       ...globals.browser,
