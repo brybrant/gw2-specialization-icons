@@ -79,7 +79,7 @@ export const Harbinger = (props) => {
         <defs>
           <Rectangle
             id='Harbinger_tiny_mask'
-            d={ellipse(15, 19, 9)}
+            d={ellipse(15, 20, 8, 9)}
             width={32}
             height={32}
           />
@@ -89,9 +89,9 @@ export const Harbinger = (props) => {
         </defs>
         <path
           clip-path='url(#Harbinger_tiny_clip)'
-          d='M22,8c-2,1-4-1-2-3-4,1-5-3-3-5-4,0-6,3-7,5,2,2,0,4-2,3,0,0-5,8-5,13s12,11,12,11c0,0,12-6,12-11s-5-13-5-13ZM13.5,13v-4h-2v-3h7v3h-2v4h-3Z'
+          d='M22,10c-3,1-4-2-2-4-4,1-5-4-3-6-2,0-5,3-6,6,0,0,1,5-3,4C2,20,0,26,15,32c15-6,13-12,7-22ZM14,12l-.5-2h-1.5v-3h6v3h-1.5l-.5,2h-2Z'
         />
-        <path d='M15,26s3-4,3-7-3-7-3-7c0,0-3,4-3,7s3,7,3,7Z' />
+        <path d='M15,27c4-5,3-10,0-14-3,4-4,9,0,14Z' />
       </Icon>
     </Show>
   );
