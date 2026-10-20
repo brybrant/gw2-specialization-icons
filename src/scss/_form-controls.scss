@@ -1,13 +1,43 @@
 @use './const' as *;
 
-$_focus: #0088dd;
-$_focus-hover: #0099ee;
-$_focus-active: #0077cc;
+@font-face {
+  font-weight: 400;
+  font-style: normal;
+  font-family: 'Geist Mono';
+  src:
+    url('/fonts/GeistMono-Regular.woff2') format('woff2'),
+    url('/fonts/GeistMono-Regular.woff') format('woff'),
+    url('/fonts/GeistMono-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+// Label
+$_label-color: $grey-70;
+
+// Input
+$_input-border: $grey-50;
+$_input-background: $grey-35;
+$_input-color: $grey-80;
+
+// Input (hover)
+$_input-border-hover: $grey-60;
+$_input-background-hover: $grey-40;
+$_input-color-hover: $grey-90;
+
+// Focus
+$_focus: #08d;
+$_focus-hover: #09e;
+$_focus-active: #07c;
+
+// Disabled
+$_disabled-border: $grey-40;
+$_disabled-background: $grey-30;
+$_disabled-color: $grey-50;
 
 // Taken from modern-normalize
 button, input, optgroup, select {
-  font-family: inherit;
   margin: 0;
+  font-family: inherit;
 }
 
 button, input {
@@ -19,15 +49,17 @@ select {
 }
 
 button {
-  text-transform: none;
+  appearance: auto;
   letter-spacing: inherit;
-  appearance: button;
+  text-transform: none;
 }
 
 @mixin focus-outline($color) {
   border-color: $color;
-  outline: 0;
+  background-color: $_input-background-hover;
   box-shadow: 0 0 7px rgba($color, .5);
+  outline: 0;
+  color: $_input-color-hover;
 };
 
 $_form-margin: 12px;
@@ -39,28 +71,29 @@ fieldset {
   align-items: center;
   margin: $gutter 0 0 0;
   padding: $_form-margin 8px;
-  border: 1px solid $grey-400;
-  border-radius: 4px;
+  border: 1px solid $grey-40;
+  border-radius: $radius;
 }
 
 legend {
   position: absolute;
   top: -$line-height * .5;
   left: 50%;
-  padding: 0 6px;
   height: $line-height;
+  padding: 0 6px;
+  background: $grey-30;
+  color: $grey-60;
+  font-size: $input-label-font-size;
   line-height: $line-height;
-  background: $grey-300;
-  color: $grey-600;
-  font-size: $button-font-size;
-  transform: translate(-50%);
   white-space: nowrap;
+  transform: translate(-50%);
 }
 
 label {
   display: block;
   max-width: 100%;
-  font-size: $p-font-size;
+  color: $_label-color;
+  font-size: $input-label-font-size;
   line-height: $line-height;
   text-align: left;
   white-space: nowrap;
@@ -74,13 +107,14 @@ label {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
-  margin-top: $_form-margin;
   width: 100%;
+  margin-top: $_form-margin;
 }
 
 .form__subgroup {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: center;
   width: 100%;
 }
 
@@ -91,20 +125,27 @@ $_from-control-x-padding: 5px;
 $_form-control-y-padding: 3px;
 $form-control-height: $line-height + $_form-control-y-padding * 2;
 
-%_form__control {
-  display: block;
+%_form-control {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: $form-control-height;
   padding: $_form-control-y-padding $_from-control-x-padding;
+  border: 1px solid $_input-border;
+  border-radius: $radius;
+  background-color: $_input-background;
+  color: $_input-color;
   font-size: $p-font-size;
   line-height: $line-height;
-  color: $grey-900;
-  background-color: $grey-400;
-  border-radius: 4px;
-  border: 1px solid $grey-500;
 
-  &:hover {
-    border-color: $grey-600;
+  @media (hover: hover) {
+    &:hover {
+      border-color: $_input-border-hover;
+      background-color: $_input-background-hover;
+      color: $_input-color-hover;
+    }
   }
 
   .form__control-group & {
@@ -116,74 +157,154 @@ $form-control-height: $line-height + $_form-control-y-padding * 2;
  * Shared size and type resets for form controls.
  * Apply `.form__control` to any of the following input elements:
  *
- * select
- * textarea
- * not(input[type="checkbox"], input[type="radio"])
+ * - input
+ * - select
+ * - textarea
+ * - not(input[type="checkbox"], input[type="radio"])
  */
 .form__control {
-  @extend %_form__control;
+  @extend %_form-control;
+
   text-align: left;
 
-  &:focus {
+  &:focus-visible {
     @include focus-outline($_focus);
   }
 }
 
+.form__control--square {
+  flex-shrink: 0;
+  width: $form-control-height;
+}
+
+optgroup {
+  font-weight: 500;
+}
+
+option {
+  color: $_input-color;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: $_input-background-hover;
+      color: $_input-color-hover;
+    }
+  }
+
+  &[disabled] {
+    color: $_disabled-color;
+  }
+}
+
 button {
-  @extend %_form__control;
-  font-weight: 700;
+  @extend %_form-control;
+
+  border-color: $blue-50;
+  background-color: $blue-40;
+  outline: 0;
+  color: $blue-85;
+  font-weight: 500;
   text-align: center;
   white-space: nowrap;
   cursor: pointer;
-  font-size: $button-font-size;
-  outline: 0;
 
-  &:hover {
-    background-color: $grey-500;
+  @media (hover: hover) {
+    &:hover {
+      border-color: $blue-60;
+      background-color: $blue-45;
+      color: $blue-90;
+    }
   }
 
   &:active {
     padding: ($_form-control-y-padding + 1px) $_from-control-x-padding ($_form-control-y-padding - 1px);
-    border-color: $grey-500;
-    background: $grey-400;
-    color: $grey-700;
+    border-color: $blue-50;
+    background: $blue-35;
+    color: $blue-70;
   }
+
+  svg {
+    flex-shrink: 0;
+    width: $icon-size;
+    height: $icon-size;
+  }
+}
+
+input[type=text] {
+  font-size: $input-text-font-size;
+  font-family:
+    'Geist Mono',
+    ui-monospace,
+    'Cascadia Code',
+    'Source Code Pro',
+    Menlo,
+    Consolas,
+    'DejaVu Sans Mono',
+    monospace;
+  text-transform: uppercase;
 }
 
 input[type=color] {
   padding: 0;
+
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  &::-webkit-color-swatch {
+    border: 0;
+  }
+
+  &::-moz-color-swatch {
+    border: 0;
+  }
 }
 
 $_checkbox-radio-size: $line-height - 2px;
 
 @mixin range-thumb {
   appearance: none;
-  border: 2px solid $grey-500;
-  border-radius: 50%;
   width: $_checkbox-radio-size;
   height: $_checkbox-radio-size;
-  background: $grey-400;
+  border: 2px solid $_input-border;
+  border-radius: 50%;
+  background: $_input-background;
   cursor: pointer;
 }
 
 @mixin range-track {
   appearance: none;
-  border-radius: ($_checkbox-radio-size - 4px) * 0.5;
   width: 100%;
   height: $_checkbox-radio-size - 4px;
-  background: $grey-200;
+  border-radius: ($_checkbox-radio-size - 4px) * 0.5;
+  background: $grey-25;
 }
 
 input[type=range] {
   appearance: none;
-  margin: ($form-control-height - $_checkbox-radio-size) * 0.5 0;
-  border-radius: ($_checkbox-radio-size - 4px) * 0.5;
   width: 100%;
   height: $_checkbox-radio-size;
+  margin: ($form-control-height - $_checkbox-radio-size) * 0.5 0;
+  border-radius: ($_checkbox-radio-size - 4px) * 0.5;
   background: none;
+
+  @media (hover: hover) {
+    &:hover {
+      &::-webkit-slider-thumb {
+        border-color: $_input-border-hover;
+        background: $_input-background-hover;
+      }
+
+      &::-moz-range-thumb {
+        border-color: $_input-border-hover;
+        background: $_input-background-hover;
+      }
+    }
+  }
 
   &::-webkit-slider-thumb {
     @include range-thumb;
+
     width: $_checkbox-radio-size + 4px;
     height: $_checkbox-radio-size + 4px;
     margin-top: -4px;
@@ -200,18 +321,6 @@ input[type=range] {
   &::-moz-range-track {
     @include range-track;
   }
-
-  &:hover {
-    &::-webkit-slider-thumb {
-      border-color: $grey-600;
-      background: $grey-500;
-    }
-    
-    &::-moz-range-thumb {
-      border-color: $grey-600;
-      background: $grey-500;
-    }
-  }
 }
 
 input[type=checkbox], input[type=radio] {
@@ -219,9 +328,16 @@ input[type=checkbox], input[type=radio] {
   position: relative;
   width: $_checkbox-radio-size;
   height: $_checkbox-radio-size;
-  border: 2px solid $grey-500;
-  background: $grey-400;
+  border: 2px solid $_input-border;
+  background: $_input-background;
   cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: $_input-border-hover;
+      background-color: $_input-background-hover;
+    }
+  }
 
   &:before {
     content: '';
@@ -230,17 +346,13 @@ input[type=checkbox], input[type=radio] {
     height: 100%;
   }
 
-  &:hover {
-    border-color: $grey-600;
-  }
-
-  &:focus {
+  &:focus-visible {
     @include focus-outline($_focus);
   }
 
   &:disabled {
-    border-color: $grey-400 !important;
-    background-color: $grey-300 !important;
+    border-color: $_disabled-border !important;
+    background-color: $_disabled-background !important;
     cursor: default;
 
     &:before {
@@ -250,17 +362,19 @@ input[type=checkbox], input[type=radio] {
 }
 
 input[type=checkbox] {
-  border-radius: 4px;
+  border-radius: $radius;
 
   &:checked {
     background: $_focus;
 
-    &:before {
-      background: url-encode("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path style='fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:10' d='M16.1,33.4 L27.3,46.4 L51,17.6'/></svg>") 50% 50% / 100% 100%;
+    @media (hover: hover) {
+      &:hover {
+        background: $_focus-hover;
+      }
     }
 
-    &:hover {
-      background: $_focus-hover;
+    &:before {
+      background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' style='fill:none;stroke:%23fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round'><path d='M20 6 9 17l-5-5'/></svg>") 50% 50% #{'/'} $icon-size $icon-size no-repeat;
     }
 
     &:active {
@@ -275,18 +389,20 @@ input[type=radio] {
   &:checked {
     border-color: $_focus;
 
-    &:before {
-      border: 3px solid $grey-300;
-      border-radius: 50%;
-      background: $_focus;
+    @media (hover: hover) {
+      &:hover {
+        border-color: $_focus-hover;
+
+        &:before {
+          background: $_focus-hover;
+        }
+      }
     }
 
-    &:hover {
-      border-color: $_focus-hover;
-
-      &:before {
-        background: $_focus-hover;
-      }
+    &:before {
+      border: 3px solid $grey-30;
+      border-radius: 50%;
+      background: $_focus;
     }
 
     &:active {
@@ -314,21 +430,20 @@ input[type=radio] {
   text-align: left;
 
   label {
-    padding-right: 4px;
     width: auto;
+    padding-right: 4px;
+    color: $_input-color;
+    font-size: $p-font-size;
     cursor: pointer;
   }
 
-  &.disabled {
-    color: $grey-500;
-
-    label {
-      cursor: default;
-    }
+  &.disabled label {
+    color: $_disabled-color;
+    cursor: default;
   }
 
   svg {
-    margin-left: 4px;
     height: $line-height;
+    margin-left: 4px;
   }
 }

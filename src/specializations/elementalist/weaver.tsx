@@ -1,0 +1,123 @@
+import { Show } from 'solid-js';
+
+import { Icon, TinyIcon } from '../icon.tsx';
+
+import * as SVG from '../../components/svg.tsx';
+
+import { useOptions } from '../../options.ts';
+
+import type { Specialization } from '../specializations.tsx';
+
+export const Weaver = {
+  name: 'Weaver',
+  iconNormal: (props) => {
+    const options = useOptions();
+
+    return (
+      <Icon
+        viewBox={
+          options.outline
+            ? [112.2348, 39.3136, 287.5304, 433.3728]
+            : [124.2343, 51.3125, 263.5313, 409.375]
+        }
+      >
+        <defs>
+          <SVG.RadialGradient
+            id='Weaver_shading_top'
+            viewBox={[0, 0, 512, 512]}
+            cx={226.617}
+            cy={185.8872}
+            fx={269.9943}
+            fy={51.3125}
+            dx={282.8079}
+            dy={217.7514}
+            rotate={-72.1347}
+            stops={[
+              { color: props.palette.Highlight },
+              { color: props.palette.Neutral },
+              { color: props.palette.Midtone },
+            ]}
+          />
+          <SVG.RadialGradient
+            id='Weaver_shading_bottom'
+            viewBox={[0, 0, 512, 512]}
+            cx={226.617}
+            cy={185.8872}
+            fx={183.2443}
+            fy={320.4525}
+            dx={282.8079}
+            dy={217.7514}
+            rotate={-72.1347}
+            stops={[
+              { color: props.palette.Neutral },
+              { color: props.palette.Midtone },
+            ]}
+          />
+          <path
+            id='Weaver_segment'
+            d='M289.1143,161.1525c-8.8655,14.1859-38.3068,56.3307-66.4,92.27l32.28,32.27c-11.74,5.42-23.42,10.95-35.04,16.58l-69.63-69.63c32.7426-36.963,65.8848-77.9614,97.35-121.2,13.5271-18.1651,20.9752-38.8559,22.32-60.13,10.0217,14.1605,18.3986,29.6363,24.8,45.76,8.7183,21.6165,5.9841,45.4614-5.68,64.08ZM142.6643,241.2525c-6.09,6.79-12.23,13.52-18.43,20.19l59.01,59.01c8.56-4.34,17.15-8.63,25.77-12.85l-66.35-66.35Z'
+          />
+          <clipPath id='Weaver_segment_clip'>
+            <use href='#Weaver_segment' />
+          </clipPath>
+          <g
+            id='Weaver_segment_composite'
+            clip-path='url(#Weaver_segment_clip)'
+          >
+            <SVG.Rectangle />
+            <Show when={options.stroke}>
+              <g fill='none'>
+                <use
+                  {...SVG.stroke.x1}
+                  href='#Weaver_segment'
+                  stroke={props.palette.Highlight}
+                />
+                <use
+                  {...SVG.stroke.x05}
+                  href='#Weaver_segment'
+                  stroke={props.palette.Dark}
+                />
+              </g>
+            </Show>
+          </g>
+        </defs>
+        <SVG.Outline d='M396.2505,242.0723l-59.0098-59.0098c-3.6693-3.6693-9.2839-4.5642-13.9121-2.2173l-49.915,24.5171c11.6641-16.3701,21.1826-30.3389,25.8696-37.8389,14.043-22.415,16.5254-50.4307,6.6646-74.8789-6.7827-17.084-15.5835-33.3223-26.1582-48.2646-6.5211-9.2145-21.0591-5.0903-21.771,6.1758-1.2158,19.2334-8.1206,37.8096-19.9683,53.7197-.0264.0352-.0527.0703-.0791.1064-30.3496,41.7061-62.8604,82.1816-96.6289,120.3037-5.1883,5.8548-13.8934,15.6725-25.8975,28.5869-4.3955,4.73-4.2607,12.0894.3047,16.6553l59.0098,59.0098c3.6693,3.6693,9.2839,4.5642,13.9121,2.2173l49.915-24.5171c-11.6641,16.3701-21.1826,30.3389-25.8696,37.8389-14.043,22.415-16.5254,50.4307-6.6646,74.8789,6.7827,17.084,15.5835,33.3223,26.1582,48.2646,6.5211,9.2145,21.0591,5.0903,21.771-6.1758,1.2158-19.2334,8.1206-37.8096,19.9683-53.7197.0264-.0352.0527-.0703.0791-.1064,30.3496-41.7061,62.8604-82.1816,96.6289-120.3037,5.1883-5.8548,13.8934-15.6725,25.8975-28.5869,4.3955-4.73,4.2607-12.0894-.3047-16.6553Z' />
+        <use
+          fill={
+            options.shading ? 'url(#Weaver_shading_top)' : props.palette.Flat
+          }
+          href='#Weaver_segment_composite'
+        />
+        <use
+          fill={
+            options.shading ? 'url(#Weaver_shading_bottom)' : props.palette.Flat
+          }
+          href='#Weaver_segment_composite'
+          transform='rotate(180 256 256)'
+        />
+      </Icon>
+    );
+  },
+  iconTiny: (props) => (
+    <TinyIcon fill={props.palette.Flat}>
+      <defs>
+        <SVG.Rectangle
+          id='Weaver_tiny_mask'
+          d='M13,21L5,13l1-1,8,8-1,1Z'
+          width={32}
+          height={32}
+        />
+        <clipPath id='Weaver_tiny_clip'>
+          <use href='#Weaver_tiny_mask' />
+        </clipPath>
+        <path
+          id='Weaver_tiny'
+          clip-path='url(#Weaver_tiny_clip)'
+          d='M5,16C14,6,16,3,16,2V0c5,4,5,7-3,16l2,2-5,3-5-5Z'
+        />
+      </defs>
+      <use href='#Weaver_tiny' />
+      <use href='#Weaver_tiny' transform='rotate(180 16 16)' />
+    </TinyIcon>
+  ),
+} as const satisfies Specialization;

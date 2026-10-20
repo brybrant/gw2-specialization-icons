@@ -1,13 +1,46 @@
 @use './const' as *;
 
+@font-face {
+  font-weight: 400;
+  font-style: normal;
+  font-family: Geist;
+  src:
+    url('/fonts/Geist-Regular.woff2') format('woff2'),
+    url('/fonts/Geist-Regular.woff') format('woff'),
+    url('/fonts/Geist-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 500;
+  font-style: normal;
+  font-family: Geist;
+  src:
+    url('/fonts/Geist-Medium.woff2') format('woff2'),
+    url('/fonts/Geist-Medium.woff') format('woff'),
+    url('/fonts/Geist-Medium.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 500;
+  font-style: italic;
+  font-family: Geist;
+  src:
+    url('/fonts/Geist-MediumItalic.woff2') format('woff2'),
+    url('/fonts/Geist-MediumItalic.woff') format('woff'),
+    url('/fonts/Geist-MediumItalic.ttf') format('truetype');
+  font-display: swap;
+}
+
 *, :before, :after {
   box-sizing: border-box;
 }
 
 html {
   overflow-y: hidden;
-  background: $grey-200;
-  color: $grey-800;
+  background: $grey-20;
+  color: $grey-80;
   font-size: 100%;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,10 +54,6 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0;
-  font-family:
-    Arial,
-    Helvetica,
-    Roboto,
-    sans-serif;
+  font-family: Geist, Arial, Helvetica, Roboto, sans-serif;
   text-align: center;
 }

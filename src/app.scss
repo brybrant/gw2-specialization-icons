@@ -4,7 +4,6 @@
 @use './scss/form-controls' as *;
 @use './scss/fade-scroll' as *;
 
-$preview-size: 512px;
 $options-width: 250px;
 
 main {
@@ -12,19 +11,32 @@ main {
   display: flex;
   flex-flow: row nowrap;
   align-content: stretch;
-  min-width: $preview-size + $options-width + $gutter * 2;
   height: 100vh;
   height: 100dvh;
-  color: $grey-900;
+  color: $grey-80;
 }
 
 .preview {
+  flex-grow: 1;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+
+  &.preview--panning {
+    cursor: grabbing;
+  }
+}
+
+.preview__stage {
   position: relative;
   display: flex;
-  flex-grow: 1;
+  flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  min-width: $preview-size + $gutter * 2;
+  width: max-content;
+  min-width: 100%;
+  height: max-content;
+  min-height: 100%;
   padding: $gutter;
 }
 
@@ -34,17 +46,15 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url-encode("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 2' opacity='.0625'><path fill='#000' d='M0,0H1V2H2V1H0'/><path fill='#fff' d='M0,1H2V0H1V2H0'/></svg>") 50% 50% / 20px 20px;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 2' opacity='.0625'><path fill='%23000' d='M0,0H1V2H2V1H0'/><path fill='%23fff' d='M0,1H2V0H1V2H0'/></svg>") 50% 50% / 20px 20px repeat;
 }
 
 .options__container {
   position: relative;
+  flex-shrink: 0;
   width: $options-width;
-  min-width: $options-width;
   height: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  background: $grey-300;
+  background: $grey-30;
   box-shadow: $right-drawer-shadow;
 }
 
@@ -53,6 +63,52 @@ main {
   flex-flow: column nowrap;
   height: 100%;
   padding: 0 10px $gutter;
+}
+
+.error {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  padding: $gutter * 0.5 $gutter;
+  text-align: center;
+  pointer-events: none;
+}
+
+.error__message {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  padding: 4px (15px + $icon-size) 4px 10px;
+  border: 1px solid $red-60;
+  border-radius: $radius;
+  background: $red-35;
+  color: $red-80;
+  font-weight: 500;
+  line-height: $line-height;
+  pointer-events: auto;
+}
+
+.error__close {
+  position: absolute;
+  top: 4px + ($line-height - $icon-size) * 0.5;
+  right: 6px;
+  width: $icon-size;
+  height: $icon-size;
+  border-radius: 50%;
+  color: $red-70;
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      color: $red-90;
+    }
+  }
+
+  svg {
+    border-radius: 50%;
+  }
 }
 
 svg {
@@ -68,10 +124,12 @@ svg {
   height: 40px;
   margin-top: $gutter;
   border-radius: 50%;
-  color: $grey-600;
+  color: $grey-60;
 
-  &:hover {
-    color: $grey-800;
+  @media (hover: hover) {
+    &:hover {
+      color: $grey-80;
+    }
   }
 
   svg {
@@ -80,13 +138,16 @@ svg {
 }
 
 small {
-  color: $grey-600;
+  color: $grey-60;
+  font-weight: 500;
   font-size: $small-font-size;
   line-height: $line-height;
 }
 
 .icon {
   position: relative;
+  flex-grow: 0;
+  flex-shrink: 0;
 
   svg {
     position: relative;
@@ -107,7 +168,7 @@ $cropmark-size: 8px;
   position: absolute;
   width: $cropmark-size;
   height: $cropmark-size;
-  
+
   &:before, &:after {
     content: '';
     position: absolute;
@@ -127,7 +188,7 @@ $cropmark-size: 8px;
 .icon__cropmark--top-left {
   top: -$cropmark-size;
   left: -$cropmark-size;
-  
+
   &:before {
     top: 100%;
     left: 0;

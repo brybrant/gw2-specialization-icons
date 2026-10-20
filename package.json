@@ -3,42 +3,34 @@
   "author": "brybrant",
   "license": "GPL-3.0-only",
   "private": true,
-  "version": "1.0.3",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
-    "predev": "node ./palettes.js",
-    "dev": "vite",
-    "prebuild": "node ./palettes.js",
+    "predev": "bun ./palettes.ts",
+    "dev": "vite --host",
+    "prebuild": "bun ./palettes.ts",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --host"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brybrant/gw2-specialization-icons.git"
   },
   "homepage": "https://brybrant.github.io/gw2-specialization-icons/",
-  "engines": {
-    "node": "^20.19.0 || >=22.13.0"
-  },
   "dependencies": {
-    "solid-js": "^1.9.11",
-    "svgo": "^4.0.0"
+    "solid-js": "^1.9.17",
+    "svgo": "^4.1.0"
   },
   "devDependencies": {
-    "@brybrant/configs": "github:brybrant/configs",
-    "@brybrant/fade-scroll": "^1.1.1",
+    "@brybrant/fade-scroll": "^2.0.0",
+    "@brybrant/sass-okhsv-okhsl": "^1.1.0",
     "@brybrant/svg-icons": "github:brybrant/svg-icons",
+    "@brybrant/vite-config": "^1.4.0",
+    "@types/bun": "^1.4.3",
+    "@types/culori": "^4.0.1",
     "culori": "^4.0.2",
-    "eslint-plugin-solid": "^0.14.5",
-    "globals": "^17.4.0",
-    "sass-embedded": "^1.97.3",
-    "vite": "^7.3.1",
-    "vite-plugin-eslint2": "^5.0.5",
-    "vite-plugin-solid": "^2.11.10",
-    "vite-plugin-solid-svg": "^0.8.1",
-    "vite-plugin-stylelint": "^6.0.4"
-  },
-  "browserslist": [
-    "> 1%, not dead, not ie 11, not op_mini all"
-  ]
+    "eslint-plugin-solid": "^0.18.1",
+    "vite": "^8.3.4",
+    "vite-plugin-solid": "^2.11.14"
+  }
 }

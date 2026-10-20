@@ -257,3 +257,9 @@ You can use these icons with your arcdps configuration by doing the following:
       <td><code>e904.png</code></td>
     </tr>
   </table>
+
+## Fonts used
+
+### Geist
+
+This project uses a subset of ["Geist"](https://github.com/vercel/geist-font) which is licensed under the [OFL-1.1 License](https://openfontlicense.org/).

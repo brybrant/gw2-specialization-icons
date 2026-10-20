@@ -1,3 +1,56 @@
-@forward './const/variables';
-@forward './const/colors';
-@forward './const/functions';
+@use 'pkg:@brybrant/sass-okhsv-okhsl' as convert;
+
+// grey
+$grey-20: convert.color_to_hex(convert.okhsv_to_rgba(235deg, 15%, 20%));
+$grey-25: convert.color_to_hex(convert.okhsv_to_rgba(235deg, 15%, 25%));
+$grey-30: convert.color_to_hex(convert.okhsv_to_rgba(235deg, 15%, 30%));
+$grey-35: convert.color_to_hex(convert.okhsv_to_rgba(235deg, 15%, 35%));
+$grey-40: convert.color_to_hex(convert.okhsv_to_rgba(235deg, 15%, 40%));
+$grey-50: convert.color_to_hex(convert.okhsv_to_rgba(235deg, 15%, 50%));
+$grey-60: convert.color_to_hex(convert.okhsv_to_rgba(235deg, 15%, 60%));
+$grey-70: convert.color_to_hex(convert.okhsv_to_rgba(235deg, 15%, 70%));
+$grey-80: convert.color_to_hex(convert.okhsv_to_rgba(235deg, 15%, 80%));
+$grey-90: convert.color_to_hex(convert.okhsv_to_rgba(235deg, 15%, 90%));
+
+// blue
+$blue-35: convert.color_to_hex(convert.okhsv_to_rgba(250deg, 25%, 35%));
+$blue-40: convert.color_to_hex(convert.okhsv_to_rgba(250deg, 25%, 40%));
+$blue-45: convert.color_to_hex(convert.okhsv_to_rgba(250deg, 25%, 45%));
+$blue-50: convert.color_to_hex(convert.okhsv_to_rgba(250deg, 25%, 50%));
+$blue-60: convert.color_to_hex(convert.okhsv_to_rgba(250deg, 25%, 60%));
+$blue-70: convert.color_to_hex(convert.okhsv_to_rgba(250deg, 25%, 70%));
+$blue-85: convert.color_to_hex(convert.okhsv_to_rgba(250deg, 25%, 85%));
+$blue-90: convert.color_to_hex(convert.okhsv_to_rgba(250deg, 25%, 90%));
+
+// red
+$red-35: convert.color_to_hex(convert.okhsv_to_rgba(30deg, 40%, 35%));
+$red-60: convert.color_to_hex(convert.okhsv_to_rgba(30deg, 40%, 60%));
+$red-70: convert.color_to_hex(convert.okhsv_to_rgba(30deg, 40%, 70%));
+$red-80: convert.color_to_hex(convert.okhsv_to_rgba(30deg, 40%, 80%));
+$red-90: convert.color_to_hex(convert.okhsv_to_rgba(30deg, 40%, 90%));
+
+// Variables
+$gutter: 20px;
+$line-height: 24px;
+$icon-size: 18px;
+$radius: 4px;
+
+// Font sizes
+$input-label-font-size: 15px;
+$input-text-font-size: 15px;
+$p-font-size: 16px;
+$small-font-size: 14px;
+
+// Shadows
+$right-drawer-shadow:
+  6px 0 4px 8px rgba(#000, .04),
+  5px 0 6px 8px rgba(#000, .08),
+  4px 0 8px 8px rgba(#000, .16)
+;
+
+// $tooltip-shadow:
+//   0 1px 12px (-3px) rgba(#000, .2),
+//   0 2px 4px         rgba(#000, .2),
+//   0 1px 4px    1px  rgba(#000, .1),
+//   0 0   5px         rgba(#000, .05)
+// ;
