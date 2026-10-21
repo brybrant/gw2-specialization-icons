@@ -57,7 +57,7 @@ export const ColorPicker = (props: ColorPickerProps) => {
           }}
           value={props.value}
           onChange={(event) => {
-            props.callback(event.target.value);
+            props.callback(event.target.value.toUpperCase());
           }}
         />
         <input
