@@ -9,6 +9,7 @@ const RADIAN = Math.PI / 180;
 
 /**
  * Create an SVG `<radialGradient>` for a specific `objectBoundingBox`.
+ *
  * This converts absolute coordinates to relative coordinates.
  */
 type RadialGradientProps = {
@@ -17,27 +18,27 @@ type RadialGradientProps = {
   /** objectBoundingBox */
   viewBox: ViewBox;
   /**
-   * Gradient X center
+   * Gradient X center *(absolute coordinate)*
    * @default `viewBox` center X
    */
   cx?: number;
   /**
-   * Gradient Y center
+   * Gradient Y center *(absolute coordinate)*
    * @default `viewBox` center Y
    */
   cy?: number;
   /**
-   * Gradient X focus center
+   * Gradient X focus center *(absolute coordinate)*
    * @default `cx`
    */
   fx?: number;
   /**
-   * Gradient Y focus center
+   * Gradient Y focus center *(absolute coordinate)*
    * @default `cy`
    */
   fy?: number;
   /**
-   * Gradient focus radius
+   * Gradient focus radius (0..1)
    * @default 0
    */
   fr?: number;

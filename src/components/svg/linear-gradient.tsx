@@ -9,7 +9,10 @@ const DEGREE = 180 / Math.PI;
 
 /**
  * Create an SVG `<linearGradient>` for a specific `objectBoundingBox`.
+ *
  * This converts absolute coordinates to relative coordinates.
+ *
+ * Default coordinates start at viewBox top-left and end at viewBox top-right
  */
 type LinearGradientProps = {
   /** Unique ID */
@@ -17,23 +20,23 @@ type LinearGradientProps = {
   /** objectBoundingBox */
   viewBox: ViewBox;
   /**
-   * Gradient X start (0..1)
-   * @default 0
+   * Gradient X start *(absolute coordinate)*
+   * @default viewBox[0]
    */
   x1?: number;
   /**
-   * Gradient Y start (0..1)
-   * @default 0
+   * Gradient Y start *(absolute coordinate)*
+   * @default viewBox[1]
    */
   y1?: number;
   /**
-   * Gradient X end (0..1)
-   * @default 1
+   * Gradient X end *(absolute coordinate)*
+   * @default viewBox[2]
    */
   x2?: number;
   /**
-   * Gradient Y end (0..1)
-   * @default 0
+   * Gradient Y end *(absolute coordinate)*
+   * @default viewBox[1]
    */
   y2?: number;
   /**
