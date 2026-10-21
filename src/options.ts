@@ -90,7 +90,7 @@ export const getOptions = (professions: Professions) => {
         Object.hasOwn(professions, professionName) &&
         typeof specializationName === 'string' &&
         Object.hasOwn(
-          professions[professionName as ProfessionName],
+          professions[professionName as ProfessionName].specializations,
           specializationName,
         )
       )) {
