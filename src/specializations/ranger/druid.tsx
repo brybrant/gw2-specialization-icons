@@ -9,7 +9,6 @@ import { useOptions } from '../../options.ts';
 import type { Specialization } from '../specializations.tsx';
 
 export const Druid = {
-  name: 'Druid',
   iconNormal: (props) => {
     const options = useOptions();
 
@@ -111,7 +110,7 @@ export const Druid = {
         <circle id='Druid_tiny' cx={16} cy={16} r={8} />
         <SVG.Rectangle
           id='Druid_tiny_mask'
-          d={ellipse(16, 16, 10.5)}
+          d={SVG.ellipse(16, 16, 10.5)}
           width={32}
           height={32}
         />

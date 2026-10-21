@@ -11,7 +11,6 @@ import type { Specialization } from '../specializations.tsx';
 const rotate = (angle: number) => `rotate(${angle} 256 284.1362)`;
 
 export const Holosmith = {
-  name: 'Holosmith',
   iconNormal: (props) => {
     const options = useOptions();
 

@@ -5,11 +5,13 @@ import { createStore } from 'solid-js/store';
 import {
   randomProfession,
   randomSpecialization,
+  type Professions,
   type ProfessionName,
   type SpecializationName,
 } from './specializations/specializations.tsx';
 
-import type { Color } from '../palettes.ts';
+import { loadFromStorage } from './storage.ts';
+import type { Color } from './palettes.ts';
 
 import colors from './scss/colors.module.scss';
 
@@ -73,20 +75,29 @@ export const useOptions = () => {
   return context;
 };
 
-export const getOptions = () => {
-  let storedOptions: Partial<Options> = {};
+export const getOptions = (professions: Professions) => {
+  const storedOptions = loadFromStorage<Partial<Options>>('options');
 
-  const storedOptionsJSON = localStorage.getItem('options');
+  const icon = storedOptions.icon as unknown;
 
-  if (storedOptionsJSON !== null) {
-    try {
-      const parsed: unknown = JSON.parse(storedOptionsJSON);
+  if (icon) {
+    if (Array.isArray(icon) && icon.length === 2) {
+      const professionName: unknown = icon[0];
+      const specializationName: unknown = icon[1];
 
-      if (parsed && Object.getPrototypeOf(parsed) === Object.prototype) {
-        storedOptions = parsed;
+      if (!(
+        typeof professionName === 'string' &&
+        Object.hasOwn(professions, professionName) &&
+        typeof specializationName === 'string' &&
+        Object.hasOwn(
+          professions[professionName as ProfessionName],
+          specializationName,
+        )
+      )) {
+        delete storedOptions.icon;
       }
-    } catch {
-      // Use fallback options
+    } else {
+      delete storedOptions.icon;
     }
   }
 

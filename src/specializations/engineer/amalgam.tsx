@@ -58,7 +58,6 @@ const AmalgamSwirl = (props: AmalgamSwirlProps) => {
 };
 
 export const Amalgam = {
-  name: 'Amalgam',
   iconNormal: (props) => {
     const options = useOptions();
 

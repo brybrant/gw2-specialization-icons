@@ -14,7 +14,6 @@ const galeshotRectangle = {
 } as const;
 
 export const Galeshot = {
-  name: 'Galeshot',
   iconNormal: (props) => {
     const options = useOptions();
 

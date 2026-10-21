@@ -58,7 +58,7 @@ type ShadingShade = (typeof SHADES)[number];
 const dispose = render(() => {
   const professions = getProfessions();
 
-  const [options, setOptions] = getOptions();
+  const [options, setOptions] = getOptions(professions);
 
   createEffect(() => {
     localStorage.setItem('options', JSON.stringify(options));
@@ -292,6 +292,9 @@ const dispose = render(() => {
   return (
     <OptionsContext.Provider value={options}>
       <main>
+        <Show when={options.checkerboard}>
+          <div class='preview__checkerboard' />
+        </Show>
         <div
           ref={previewRef}
           class={`preview${panning() ? ' preview--panning' : ''}`}
@@ -340,9 +343,6 @@ const dispose = render(() => {
           style={{ background: options.background }}
         >
           <div class='preview__stage'>
-            <Show when={options.checkerboard}>
-              <div class='preview__checkerboard' />
-            </Show>
             <div class='icon'>
               <Show when={options.cropmarks}>
                 <div class='icon__cropmark icon__cropmark--top-left' />

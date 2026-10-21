@@ -9,7 +9,6 @@ import { useOptions } from '../../options.ts';
 import type { Specialization } from '../specializations.tsx';
 
 export const Scourge = {
-  name: 'Scourge',
   iconNormal: (props) => {
     const options = useOptions();
 

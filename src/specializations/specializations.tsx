@@ -49,6 +49,7 @@ import { Warrior } from './warrior/warrior.tsx';
 import { Weaver } from './elementalist/weaver.tsx';
 import { Willbender } from './guardian/willbender.tsx';
 
+import { loadFromStorage } from '../storage.ts';
 import { PALETTES, type Palette } from '../palettes.ts';
 
 export type SpecializationProps = {
@@ -56,12 +57,13 @@ export type SpecializationProps = {
 };
 
 export type Specialization = {
-  readonly name: string;
+  readonly name?: string;
   iconNormal: Component<SpecializationProps>;
   iconTiny: Component<SpecializationProps>;
 };
 
 export type RuntimeSpecialization = Specialization & {
+  readonly name: string;
   readonly palette: Palette;
   readonly setPalette: SetStoreFunction<Palette>;
 };
@@ -146,7 +148,7 @@ type Profession = {
   readonly specializations: Record<SpecializationName, RuntimeSpecialization>;
 };
 
-type Professions = Record<ProfessionName, Profession>;
+export type Professions = Record<ProfessionName, Profession>;
 
 type KeysOfUnion<T> = T extends unknown ? keyof T : never;
 
@@ -160,21 +162,7 @@ export const randomProfession = randomKeyOf(professions);
 export const randomSpecialization = randomKeyOf(professions[randomProfession]);
 
 export const getProfessions = () => {
-  let storedPalettes: Record<string, Palette> = {};
-
-  const storedPalettesJSON = localStorage.getItem('palettes');
-
-  if (storedPalettesJSON !== null) {
-    try {
-      const parsed: unknown = JSON.parse(storedPalettesJSON);
-
-      if (parsed && Object.getPrototypeOf(parsed) === Object.prototype) {
-        storedPalettes = parsed as Record<string, Palette>;
-      }
-    } catch {
-      // Use default palettes
-    }
-  }
+  const storedPalettes = loadFromStorage<Record<string, Palette>>('palettes');
 
   const professionsObject = {} as Professions;
 
@@ -193,7 +181,7 @@ export const getProfessions = () => {
       });
 
       specializationsObject[specializationName] = Object.freeze({
-        name: specialization.name,
+        name: specialization.name ?? specializationName,
         iconNormal: specialization.iconNormal,
         iconTiny: specialization.iconTiny,
         palette,

@@ -3,7 +3,7 @@
   "author": "brybrant",
   "license": "GPL-3.0-only",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "scripts": {
     "predev": "bun ./palettes.ts",
@@ -30,7 +30,7 @@
     "@types/culori": "^4.0.1",
     "culori": "^4.0.2",
     "eslint-plugin-solid": "^0.18.1",
-    "vite": "^8.3.4",
+    "vite": "^8.3.5",
     "vite-plugin-solid": "^2.11.14"
   }
 }
